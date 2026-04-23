@@ -351,6 +351,11 @@
         </details>
 
         <details>
+            <summary>If there's no cloud, why can I import from iCloud?</summary>
+            <p>Armored Vault uses iOS's native Files picker for imports, so it can pull from any source iOS exposes — On My iPad, iCloud Drive, Dropbox, Google Drive, or anything else you've connected. The import is strictly one-way: files are copied in, encrypted on arrival, and from that moment live only on this device. The app itself still makes zero network calls and has no account, no sync, and no link back to iCloud or any other provider. iCloud is a source you pull from, not a cloud the app lives in.</p>
+        </details>
+
+        <details>
             <summary>What encryption does the app use?</summary>
             <p>AES-256-GCM — the same authenticated-encryption standard used by governments and financial institutions. Files are encrypted the moment they enter the vault. The master key is stored in the iOS Keychain, protected by the device's Secure Enclave.</p>
         </details>
