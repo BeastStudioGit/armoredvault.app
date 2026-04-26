@@ -84,15 +84,15 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .nav-lock { font-size: 20px; }
 .nav-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
     display: block;
 }
 .footer-brand .nav-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
     margin-bottom: 8px;
 }
 .nav-links {
