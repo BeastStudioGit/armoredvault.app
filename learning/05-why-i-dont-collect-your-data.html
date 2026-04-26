@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I Don&#x27;t Collect Your Data — Armored Vault Learning Center</title>
+    <meta name="description" content="Zero analytics, zero telemetry, zero servers — and how you can verify it.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html#top" class="nav-brand">
+            <span class="nav-lock">&#128274;</span>
+            <span>Armored Vault</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html#features">Features</a>
+            <a href="../index.html#security">Security</a>
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<article class="article">
+    <div class="article-inner">
+        <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
+        <span class="eyebrow">ARMORED VAULT LEARNING CENTER</span>
+        <h1 class="article-title">Why I Don&#x27;t Collect Your Data</h1>
+        <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+        <div class="article-body">
+<p>Most apps you install on your iPad collect data about you. They send analytics, crash reports, usage telemetry, and occasionally things you&#x27;d be uncomfortable knowing they collect. They do it because data is valuable — to advertisers, to product teams, to investors, occasionally to law enforcement subpoenas. The whole modern app ecosystem assumes a default of &quot;of course we&#x27;ll collect data; what kind of company would we be if we didn&#x27;t?&quot;</p>
+<p>Armored Vault is built on the opposite default: <strong>collect nothing.</strong> No analytics. No telemetry. No crash reporting service. No advertising IDs. No hidden network calls. No &quot;anonymous usage statistics that totally couldn&#x27;t be re-identified, I promise.&quot; Nothing.</p>
+<p>This article is about why that decision is non-negotiable for an app like this, what it means in practice, and what you can verify yourself.</p>
+<h2>The simplest reason: data I don&#x27;t have can&#x27;t be subpoenaed</h2>
+<p>I am one developer. I am not Apple, I am not Google, I am not 1Password. If I collected your data — even &quot;anonymous&quot; data, even just analytics about which buttons you tap — and a court order arrived demanding I turn it over, I would be legally obligated to comply. The size of my legal team is zero. The cost of fighting a subpoena is far more than I make from app sales. The realistic outcome: I&#x27;d hand the data over.</p>
+<p>The only way to make that scenario impossible is to never collect the data in the first place. <strong>You cannot subpoena data that doesn&#x27;t exist.</strong> Every byte of telemetry I never received is a byte that no court can demand from me.</p>
+<p>This isn&#x27;t a hypothetical. Vault and security apps get subpoenaed. They get pressured by governments. They get acquired by larger companies whose privacy policies suddenly change. The only durable defense is to architect the app so that the operator (me) genuinely can&#x27;t help an attacker, even if asked.</p>
+<h2>The technical version: what&#x27;s actually happening</h2>
+<p>Let me show you what Armored Vault does and doesn&#x27;t do at the network level.</p>
+<p><strong>The app makes zero network calls during normal operation.</strong> No &quot;phone home.&quot; No update checks (the App Store handles updates). No analytics endpoints. No crash reporters. The app&#x27;s <code>Info.plist</code> does not enable arbitrary network access. There are no SDKs from Firebase, Mixpanel, Amplitude, Google Analytics, Segment, Sentry, or any other vendor. There is no advertising SDK. There is no &quot;growth tooling.&quot;</p>
+<p><strong>Crash reporting happens through Xcode Organizer.</strong> Apple aggregates anonymized crash reports from devices that have opted into sharing diagnostics with developers. Those reports go through Apple&#x27;s anonymization pipeline before I see anything, and only users who explicitly opted in (via Settings → Privacy → Analytics) participate. I don&#x27;t run any other reporting layer.</p>
+<p><strong>The app does not access the network for any purpose during vault operations.</strong> It doesn&#x27;t fetch icons. It doesn&#x27;t validate licenses. It doesn&#x27;t check for updates. The crypto operations are all local, the file storage is all local, the metadata is all local. The only time the app touches the network at all is if <em>you</em> explicitly use a feature that requires it (for example, Drive Export to Google Drive, where you&#x27;re handing off files to Google&#x27;s API after the export completes).</p>
+<p><strong>You can verify this yourself.</strong> If you don&#x27;t trust me, install a network monitoring tool like Charles Proxy or Little Snitch on your computer and route your iPad&#x27;s traffic through it. Open Armored Vault. Use it normally for an hour. Watch what calls are made. The answer should be zero — except where you explicitly invoked Drive Export or another network-using feature.</p>
+<h2>The privacy policy in plain English</h2>
+<p>There&#x27;s a formal privacy policy at <code>armoredvault.app/privacy.html</code>. The plain-English version is shorter:</p>
+<ul><li>I do not collect your data.</li><li>I cannot see what files you put in your vault.</li><li>I do not know who you are.</li><li>I do not have an account system.</li><li>I do not require you to register, sign in, or create a profile.</li><li>I do not track your usage of the app.</li><li>I do not send anything about your usage to any server.</li><li>I do not have a database of users because I do not have users in any sense beyond &quot;people who downloaded a binary from the App Store.&quot;</li></ul>
+<p>If a government agency, a private investigator, a journalist, a hacker, or anyone else asks me what&#x27;s in your vault, the truthful answer is: <strong>I have no idea, and I have no way to find out.</strong></p>
+<h2>Why I made these choices</h2>
+<p>A few reasons, in descending order of importance.</p>
+<h3>1. The product can&#x27;t credibly be what it claims to be otherwise</h3>
+<p>If I told you &quot;Armored Vault encrypts your files with a passphrase only you know&quot; and then quietly collected analytics that included your file counts, file sizes, file types, vault open frequency, and feature usage patterns, the sentence would be technically true but morally a lie. The whole <em>point</em> of a privacy vault is that I&#x27;m not in the loop. The first time I add a telemetry SDK, I&#x27;m in the loop. The architecture doesn&#x27;t exist.</p>
+<h3>2. I genuinely don&#x27;t want the responsibility</h3>
+<p>Holding user data is a liability. Even &quot;anonymous&quot; telemetry can be re-identified given enough cross-references. Even encrypted analytics can leak through metadata. Holding nothing is the only state in which I can sleep at night, knowing that no breach of my infrastructure could harm you. There&#x27;s nothing to breach. There&#x27;s no infrastructure that holds your data.</p>
+<h2>What about debugging?</h2>
+<p>A reasonable question: how do I fix bugs if I&#x27;m not collecting telemetry?</p>
+<p>The answer is the same as how software was debugged for decades before telemetry became universal: users tell me when things break, and I fix them. There&#x27;s a Support URL on the App Store listing that points to the support page. If you have a bug, write it up there. If it&#x27;s a crash, the Xcode Organizer shows me the anonymized crash reports from users who opted in via iOS Settings. That&#x27;s a smaller dataset than telemetry would give me, but it&#x27;s been enough for every bug I&#x27;ve fixed so far.</p>
+<p>The other reality is that Armored Vault is intentionally a small, focused app. Fewer features mean fewer bugs. A vault that does one thing well is easier to keep correct than a vault that does ten things mediocrely. The simplicity of the product makes the no-telemetry choice tractable.</p>
+<h2>What about future features?</h2>
+<p>I&#x27;ll be transparent about anything that ever changes here:</p>
+<ul><li><strong>If a future feature requires the network</strong>, it will be a feature you explicitly invoke (like Drive Export today). It will not become a background process. It will not &quot;phone home.&quot; If a feature ever required a server I run, I&#x27;d document it explicitly and you could choose not to use it.</li><li><strong>If I ever consider adding telemetry</strong>, I won&#x27;t do it quietly. I&#x27;ll write a Learning Center article about exactly what would be collected and why, and you&#x27;ll get to decide before any data leaves your device. The default would be off.</li><li><strong>If anyone ever offers to acquire Armored Vault</strong>, the no-data-collection commitment is something I&#x27;d refuse to compromise on. If that&#x27;s a deal-breaker, I won&#x27;t sell.</li></ul>
+<h2>The bottom line</h2>
+<p>You should be able to trust the apps you let near your private files. Not because you &quot;trust the developer&quot; — that&#x27;s a weak guarantee that depends on the developer&#x27;s mood, finances, and integrity over time. You should be able to trust the apps because the apps are <em>architected</em> in a way that doesn&#x27;t require you to trust anyone.</p>
+<p>Armored Vault tries to be that kind of app. Your data lives on your iPad, encrypted under your passphrase. I don&#x27;t see it. I don&#x27;t collect it. I don&#x27;t track you. There is no server. There is no database. There is no analytics dashboard somewhere with your usage patterns on it. There is the binary you downloaded from the App Store, and there is your iPad, and there is your passphrase, and there is nothing else.</p>
+<p>That&#x27;s the deal. I&#x27;m going to keep it.</p>
+<p>— Robert</p>
+        </div>
+        <div class="article-pager">
+<a class="pager prev" href="04-your-files-outside-the-vault.html"><span class="pager-label">&larr; Previous</span><span class="pager-title">Your Files Outside the Vault</span></a>
+<span class="pager pager-empty"></span>
+</div>
+    </div>
+</article>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="nav-lock">&#128274;</span>
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad</p>
+        </div>
+        <nav class="footer-links">
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../index.html#features">Features</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

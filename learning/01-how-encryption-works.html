@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Armored Vault Encrypts Your Files — Armored Vault Learning Center</title>
+    <meta name="description" content="AES-256-GCM, PBKDF2, KEK-wrapped MFEK, UUID filenames — the architecture, in plain language.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html#top" class="nav-brand">
+            <span class="nav-lock">&#128274;</span>
+            <span>Armored Vault</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html#features">Features</a>
+            <a href="../index.html#security">Security</a>
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<article class="article">
+    <div class="article-inner">
+        <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
+        <span class="eyebrow">ARMORED VAULT LEARNING CENTER</span>
+        <h1 class="article-title">How Armored Vault Encrypts Your Files</h1>
+        <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+        <div class="article-body">
+<p>I built Armored Vault because I wanted a place on my iPad where private files were actually private — not &quot;private if Apple&#x27;s lock screen holds,&quot; not &quot;private until somebody plugs the iPad into a forensic tool,&quot; but private in the only sense that matters: unreadable to anyone who doesn&#x27;t know my passphrase. This article walks through how that actually works under the hood. No marketing words, no hand-waving. If you&#x27;re going to trust an app with your files, you deserve to understand what it&#x27;s doing with them.</p>
+<h2>The one sentence version</h2>
+<p><strong>Your 10-word Diceware passphrase is the root of trust.</strong> Without it, every file body, every filename, and every byte of metadata in the vault is mathematically inaccessible. The iOS Keychain holds nothing that could substitute for it. If somebody seizes your unlocked iPad and pulls the entire app sandbox into a forensic tool, what they get is a directory full of <code>&lt;random-uuid&gt;.enc</code> files and a 104-byte key blob that&#x27;s useless without your passphrase.</p>
+<p>Now let me show you why that&#x27;s true.</p>
+<h2>The threat model</h2>
+<p>I designed Armored Vault to keep your files unreadable in three uncomfortable scenarios:</p>
+<ol><li><strong>Forensic seizure of an unlocked-but-locked iPad.</strong> Somebody knows your iPad passcode, throws the device into a forensic tool, and reads the entire app sandbox.</li><li><strong>Jailbreak with full filesystem access.</strong> Every file in Armored Vault&#x27;s container is exposed to inspection.</li><li><strong>Backup theft or cloud snapshot exposure.</strong> Your data leaks through some channel that bypasses iOS at-rest protection.</li></ol>
+<p>In all three cases, an attacker without your Diceware passphrase should see opaque ciphertext and not even be able to recover original filenames. That&#x27;s the bar.</p>
+<h2>The two architectural pillars</h2>
+<h3>Pillar 1: Passphrase-derived Key Encrypting Key (KEK)</h3>
+<p>Every vault has a randomly generated <strong>Master File Encryption Key (MFEK)</strong> — a 256-bit AES key that encrypts every file you import. The MFEK never lives unwrapped on disk, never lives in the iOS Keychain, and never leaves memory while the vault is locked.</p>
+<p>Instead, the MFEK is <strong>wrapped</strong> by a key derived from your Diceware passphrase. Here&#x27;s the chain:</p>
+<ul><li>Your passphrase (10 Diceware words ≈ 130 bits of entropy) goes through <strong>PBKDF2-HMAC-SHA512</strong> with a 32-byte random salt and 600,000 iterations. That derives a 256-bit Key Encrypting Key (KEK).</li><li>The KEK <strong>AES-GCM-encrypts</strong> the MFEK. The result — 60 bytes of wrapped key plus the salt and iteration count — gets written to a 104-byte <code>vault.kek</code> file in the app&#x27;s Documents directory.</li><li>When you unlock, your passphrase is run through PBKDF2 against the stored salt. If the resulting KEK successfully GCM-decrypts the wrapped MFEK, the passphrase was correct.</li></ul>
+<p>Notice what&#x27;s <em>not</em> in that chain: there is no hashed-password comparison anywhere. <strong>AES-GCM&#x27;s authentication tag is the passphrase check.</strong> Wrong passphrase → wrong KEK → AES-GCM authentication fails → unlock denied. There&#x27;s no &quot;compare hashes&quot; step that could be bypassed by patching the binary, because the cryptography itself is the gatekeeper.</p>
+<p>The iteration count and salt are stored per-vault, so I can raise the difficulty parameter in future versions without breaking your existing vault.</p>
+<p>The decoy vault (more on that elsewhere) uses the exact same scheme with its own independent <code>decoy.kek</code>, salt, MFEK, and passphrase. The two are cryptographically unrelated. There is no flag on disk that distinguishes &quot;real vault&quot; from &quot;decoy vault.&quot;</p>
+<h3>Pillar 2: UUID filenames + AVMD encrypted metadata header</h3>
+<p>Every file you import is renamed on disk to a random UUID with a <code>.enc</code> extension. The original filename, file kind, date added, and original byte size live only inside an <strong>AVMD metadata header</strong> prepended to the encrypted body:</p>
+<ul><li>The AVMD header is 12 bytes of plaintext (the magic string <code>AVMD</code>, a version number, and a payload length) followed by a JSON blob of the metadata, <strong>AES-GCM-encrypted under the same MFEK</strong> that protects the file body.</li><li>Without the MFEK — which requires your passphrase — neither the filename nor any metadata can be recovered.</li></ul>
+<p>A directory listing of a jailbroken Armored Vault container looks like this:</p>
+<pre><code>4f8e7d10-...e6.enc
+9a2b1c44-...07.enc
+c1d8f3a9-...22.enc</code></pre>
+<p>No filenames. No extensions that hint at file types. No creation dates that match when you imported them. The forensic examiner cannot tell a video from a photo from a PDF from a tax return.</p>
+<p>This invariant extends <em>beyond</em> the vault directory. Temporary files created during Photos-picker imports and document previews are also staged under random UUIDs in <code>/tmp</code>, never under your filename. The app&#x27;s logging is sanitized — Armored Vault&#x27;s <code>NSLog</code> calls never emit user-chosen names, so even a captured device log won&#x27;t leak what you imported.</p>
+<h2>File body encryption (the IPAC chunked format)</h2>
+<p>Once your MFEK is decrypted into memory, file bodies are encrypted in a streaming, chunked format I call <strong>IPAC</strong>:</p>
+<ul><li><strong>Cipher:</strong> AES-256-GCM, via Apple&#x27;s CryptoKit. Hardware-accelerated on every supported iPad.</li><li><strong>Chunk size:</strong> 4 MB. Each chunk is sealed independently with its own random 96-bit GCM nonce and 128-bit authentication tag.</li><li><strong>IPAC body header:</strong> 24 bytes — magic <code>IPAC</code>, version, chunk size, total chunks, plaintext file size.</li></ul>
+<p>Why chunked instead of whole-file encryption?</p>
+<ul><li><strong>Streaming with bounded memory.</strong> Multi-gigabyte videos work on memory-constrained iPads. Each chunk is processed inside an <code>autoreleasepool</code> so transient buffers don&#x27;t accumulate.</li><li><strong>Random-access video playback.</strong> When you scrub through a 1 GB encrypted video, Armored Vault decrypts only the chunks that overlap the requested byte range, with a 32-chunk (128 MB) cache and a 20-chunk speculative prefetch on a separate worker pool. Seek latency on a 1 GB encrypted file is indistinguishable from a small file.</li><li><strong>Per-chunk integrity.</strong> A single corrupt chunk fails authentication without contaminating the rest. If somebody tampered with byte 800 million of your video, you&#x27;d know — and the rest of the video would still be recoverable.</li></ul>
+<h2>The cryptographic primitives, end to end</h2>
+<div class="table-wrap"><table><thead><tr><th>Purpose</th><th>Primitive</th><th>Library</th></tr></thead><tbody><tr><td>Passphrase → KEK</td><td>PBKDF2-HMAC-SHA512, 600K iter, 32B salt</td><td>CommonCrypto</td></tr><tr><td>KEK wraps MFEK</td><td>AES-256-GCM</td><td>CryptoKit</td></tr><tr><td>File body (per 4 MB chunk)</td><td>AES-256-GCM</td><td>CryptoKit</td></tr><tr><td>AVMD metadata header</td><td>AES-256-GCM (under MFEK)</td><td>CryptoKit</td></tr><tr><td>Random salts, MFEK, nonces</td><td><code>SecRandomCopyBytes</code> (kernel CSPRNG)</td><td>Security framework</td></tr><tr><td>File at-rest protection</td><td><code>FileProtectionType.complete</code></td><td>Foundation</td></tr><tr><td>Backup exclusion</td><td><code>URLResourceValues.isExcludedFromBackup</code></td><td>Foundation</td></tr></tbody></table></div>
+<p>Armored Vault uses <strong>only Apple system crypto</strong> — CryptoKit, CommonCrypto, and the Security framework. No third-party crypto libraries. No custom modes. No rolled key schedules. This is also why the app qualifies for the U.S. Export Administration Regulations §740.17(a) exemption — the same reason no ERN/CCATS filing is required for App Store submission.</p>
+<h2>What this provably protects</h2>
+<p>Even with full filesystem access — jailbreak, forensic image, backup leak — an attacker without your passphrase cannot:</p>
+<ul><li>Decrypt any file body. The MFEK is wrapped under the passphrase-derived KEK, and AES-GCM provides both confidentiality and integrity.</li><li>Recover any filename, file type, or date. That data lives inside the AVMD header, encrypted under the same MFEK.</li><li>Distinguish a video from a photo from a document by inspection. They&#x27;re all <code>&lt;uuid&gt;.enc</code> files with the same shape.</li><li>Brute-force your passphrase practically. 600K PBKDF2-HMAC-SHA512 iterations gate every guess to about half a second on iPad-class hardware. A 10-word Diceware passphrase has roughly 130 bits of entropy. Even at one billion guesses per second on dedicated hardware, the search space is computationally infeasible.</li><li>Substitute, tamper with, or partially corrupt a file undetectably. Every chunk&#x27;s GCM tag will fail authentication on any modification.</li><li>Tell the real vault from the decoy by examining the disk. Both vaults have identical structure, independent keys, and no flag indicating which is &quot;real.&quot;</li></ul>
+<h2>The bottom line</h2>
+<p>The strength of every guarantee above flows from one thing: your passphrase. If you pick something a computer can guess in a million tries, none of this saves you. If you pick a 10-word Diceware passphrase (or use the in-app generator), the math says cracking it would take roughly 25 quintillion years at one trillion guesses per second — vastly longer than the current age of the universe. For practical purposes, &quot;uncrackable in any human lifetime&quot; is the right way to think about it.</p>
+<p>That&#x27;s why the next article in this Learning Center is about choosing your passphrase. Read that one too. It&#x27;s the single most important decision you make as an Armored Vault user.</p>
+<p>— Robert</p>
+        </div>
+        <div class="article-pager">
+<span class="pager pager-empty"></span>
+<a class="pager next" href="02-choosing-a-strong-passphrase.html"><span class="pager-label">Next &rarr;</span><span class="pager-title">Choosing a Strong Passphrase</span></a>
+</div>
+    </div>
+</article>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="nav-lock">&#128274;</span>
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad</p>
+        </div>
+        <nav class="footer-links">
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../index.html#features">Features</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

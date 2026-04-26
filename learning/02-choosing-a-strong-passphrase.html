@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choosing a Strong Passphrase — Armored Vault Learning Center</title>
+    <meta name="description" content="Why a 10-word Diceware passphrase is the right answer, and how Face ID still keeps you safe.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html#top" class="nav-brand">
+            <span class="nav-lock">&#128274;</span>
+            <span>Armored Vault</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html#features">Features</a>
+            <a href="../index.html#security">Security</a>
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<article class="article">
+    <div class="article-inner">
+        <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
+        <span class="eyebrow">ARMORED VAULT LEARNING CENTER</span>
+        <h1 class="article-title">Choosing a Strong Passphrase</h1>
+        <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+        <div class="article-body">
+<p>Here&#x27;s the uncomfortable truth about Armored Vault: the encryption is mathematically excellent, but I cannot save you from a bad passphrase. If you pick <code>&quot;password&quot;</code> or <code>&quot;letmein2026&quot;</code>, the entire architecture I described in the previous article collapses. Not because the encryption is weak — it isn&#x27;t — but because somebody who can guess your passphrase doesn&#x27;t need to break the encryption. They just unlock the vault the way you do.</p>
+<p>This article is about how to pick a passphrase that no one — not your nosy roommate, not a forensic technician, not a botnet farm with a million GPUs — can guess in any reasonable amount of time.</p>
+<h2>What we&#x27;re actually defending against</h2>
+<p>When somebody tries to break into your vault, they do one of two things:</p>
+<ol><li><strong>Guess your passphrase from a list of common patterns.</strong> &quot;password,&quot; &quot;qwerty,&quot; your birthday, your dog&#x27;s name, the team you root for. Modern attackers use lists of <em>billions</em> of leaked passwords from previous breaches. If your passphrase is on one of those lists — or follows a common pattern — they don&#x27;t need to &quot;crack&quot; anything.</li><li><strong>Brute force every possible combination.</strong> Try every 8-character string, then every 9-character string, and so on, hoping to stumble onto yours.</li></ol>
+<p>Armored Vault&#x27;s architecture makes brute force <em>slow</em>. PBKDF2 with 600,000 iterations means each guess takes about half a second on iPad hardware, and even on dedicated cracking rigs (which are roughly 1,000× faster) you&#x27;re still looking at a millisecond per guess. So the math problem becomes: how many guesses does the attacker need before they&#x27;re likely to land on yours?</p>
+<p>That number is determined entirely by your passphrase&#x27;s <strong>entropy</strong> — a measure of how unpredictable it is.</p>
+<h2>Entropy in plain English</h2>
+<p>Entropy is measured in bits. Each bit doubles the number of possible values. If your password has 1 bit of entropy, an attacker needs 2 guesses on average. 10 bits = 1,024 guesses. 50 bits = a quadrillion guesses.</p>
+<p>Here&#x27;s what real passwords look like in entropy terms:</p>
+<ul><li><code>&quot;password&quot;</code> — under 5 bits. Brute-forced instantly. Not because it&#x27;s short, but because it&#x27;s on every guessing list ever made.</li><li><code>&quot;P@ssw0rd1!&quot;</code> — about 15 bits <em>if you account for the predictable substitutions</em> (every cracker knows <code>@</code> for <code>a</code>). Looks &quot;complex,&quot; cracks in seconds.</li><li><code>&quot;Tr0ub4dor&amp;3&quot;</code> (the famous XKCD example) — about 28 bits. Still cracks in hours on modest hardware.</li><li>A truly random 8-character password (mixed case, digits, symbols) — about 52 bits. Strong against casual attackers, vulnerable to a serious adversary with time.</li><li>A 10-word Diceware passphrase like <code>&quot;correct horse battery staple plumber zebra envelope mountain coffee daughter&quot;</code> — about <strong>130 bits</strong>. The heat death of the universe arrives before this gets cracked.</li></ul>
+<p>That last one is what Armored Vault is built around.</p>
+<h2>What is Diceware, and why does it work so well?</h2>
+<p>Diceware is a method of generating passphrases by rolling physical dice (or, in our case, using a cryptographically secure random number generator) to pick words from a numbered list. Each word in a standard Diceware list contributes about 12.9 bits of entropy. Ten words gives you ~130 bits.</p>
+<p>Two things make Diceware special:</p>
+<ol><li><strong>The randomness is real.</strong> A computer rolling cryptographic dice doesn&#x27;t have any pattern an attacker can predict. There&#x27;s no birthday in there, no pet&#x27;s name, no leetspeak.</li><li><strong>The words are memorable.</strong> Your brain is much better at remembering &quot;dolphin marble candle thunder pillow&quot; than at remembering <code>Xj7#qPm2!nL@</code>. And — critically — a long random passphrase is <em>exponentially</em> stronger than a short complex one. Length beats complexity every time.</li></ol>
+<p>Armored Vault includes a built-in Diceware passphrase generator. Tap &quot;Generate&quot; on the passphrase setup screen and you&#x27;ll get a 10-word random phrase. <strong>Use it.</strong> Or roll your own with five physical dice and a Diceware word list (the EFF publishes one for free at <code>eff.org</code>).</p>
+<h2>Strong common-sense recommendations</h2>
+<p>Here&#x27;s how to actually pick a passphrase that protects you:</p>
+<h3>Do these things</h3>
+<ul><li><strong>Use the in-app generator.</strong> It produces passphrases at the strength tier the architecture is designed for. There&#x27;s no faster way to get this right.</li><li><strong>If you make your own, use at least 8 random words.</strong> From a real word list, picked by real randomness (dice or a secure RNG), not by you &quot;thinking of random words.&quot; Humans are terrible at randomness.</li><li><strong>Write it down on paper and put it somewhere safe.</strong> A safe-deposit box, a fireproof home safe, a sealed envelope with your will. This is the <em>opposite</em> of bad practice — paper that an attacker would need physical access to your home to steal is far more secure than a passphrase you&#x27;ve memorized so badly you reuse it across services.</li><li><strong>If you&#x27;re going to memorize it, use it daily for the first two weeks.</strong> Type it out. Build muscle memory. The first few days are the highest-risk window for forgetting.</li><li><strong>Pick a passphrase you&#x27;ll actually type.</strong> If it&#x27;s so long you start hating it, you&#x27;ll be tempted to weaken it later. Ten Diceware words is the sweet spot — strong, and tolerable to type.</li></ul>
+<h3>Don&#x27;t do these things</h3>
+<ul><li><strong>Don&#x27;t reuse a passphrase you use anywhere else.</strong> Not your email, not your bank, not Netflix. If any one of those services gets breached (and they do, constantly), your password ends up on a list. Vault passphrases must be unique to the vault.</li><li><strong>Don&#x27;t pick something meaningful.</strong> Your wedding date, your kid&#x27;s middle name, your favorite quote. If anyone who knows you could guess it within 100 tries, it&#x27;s not strong enough.</li><li><strong>Don&#x27;t use leetspeak as your &quot;complexity.&quot;</strong> <code>M0nday!</code> is no harder to crack than <code>monday</code>. Crackers know all those substitutions.</li><li><strong>Don&#x27;t store it in a password manager.</strong> Wait — really? Yes, really, for <em>this specific app</em>. The whole point of Armored Vault is that no other software gatekeeps your files. If your password manager gets breached, you don&#x27;t want your vault passphrase in there with everything else. Memorize it, write it on paper, do both. Don&#x27;t put it in 1Password.</li><li><strong>Don&#x27;t share it with anyone &quot;just in case.&quot;</strong> Not your spouse, not your sibling, not your lawyer. If you want a contingency plan for your death, leave the written passphrase with your will, in a sealed envelope, with instructions. Don&#x27;t tell anyone the contents while you&#x27;re alive.</li></ul>
+<h2>What Armored Vault does to nudge you in the right direction</h2>
+<p>Armored Vault enforces:</p>
+<ul><li><strong>A 12-character minimum.</strong> This is the floor — not the goal. 12 random characters is roughly the strength of a short Diceware passphrase. It&#x27;s the minimum the architecture&#x27;s PBKDF2 work factor protects effectively.</li><li><strong>Strength gating.</strong> The Save button doesn&#x27;t enable until your passphrase scores at least &quot;Strong&quot; on the in-app strength meter. This isn&#x27;t a marketing checkbox — the meter is the same engine behind the &quot;Test a Passphrase&quot; tool, and it&#x27;s tuned to fail on common patterns no matter how long they are. You can&#x27;t game it by typing <code>&quot;passwordpasswordpassword&quot;</code>.</li></ul>
+<p>These two limits together mean you can&#x27;t accidentally choose something terrible. But you <em>can</em> still choose something mediocre — a 12-character random string is much weaker than a 10-word Diceware phrase. <strong>Don&#x27;t aim for the floor. Aim for the ceiling.</strong> The cost of a great passphrase versus a barely-acceptable one is about 30 extra seconds of typing, once. The benefit is decades of security.</p>
+<h2>&quot;But what about Face ID? Doesn&#x27;t using my face weaken everything?&quot;</h2>
+<p>Reasonable question. The short answer is <strong>no, Face ID does not weaken your vault</strong> — and here&#x27;s exactly why, in the same architectural terms as the previous article.</p>
+<p>When you enable Face ID in Armored Vault, the app does <em>not</em> store your passphrase anywhere. It also does not derive a second, weaker key. What it does is take the <strong>MFEK</strong> (the master file encryption key, already in memory because you just unlocked the vault with your passphrase) and write a copy of it into a special Keychain entry that&#x27;s gated by your iPad&#x27;s <strong>Secure Enclave</strong>. The entry is created with two access flags that matter:</p>
+<ul><li><strong><code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code></strong> — the entry never leaves the device, never appears in any backup, and is destroyed if you remove your iPad&#x27;s passcode entirely.</li><li><strong><code>.biometryCurrentSet</code></strong> — the entry is bound to the <em>exact</em> Face ID enrollment that exists right now. If you re-enroll Face ID, add an alternate appearance, or change the device passcode, iOS automatically destroys the entry. There is no way for someone to swap in a new face and unlock your vault.</li></ul>
+<p>When you tap Face ID later, the Secure Enclave performs the biometric match in dedicated hardware (your iPad&#x27;s CPU never sees the face data) and only releases the MFEK if the match succeeds. The MFEK then goes straight back into memory, exactly as if you&#x27;d typed your passphrase. Decryption happens normally from there.</p>
+<p><strong>Why this is still safe:</strong></p>
+<ul><li>The MFEK in the biometric Keychain entry is protected by the same hardware that protects Apple Pay, your iCloud Keychain, and your iPad passcode. The Secure Enclave is a separate co-processor with its own encrypted memory; even Apple cannot extract its contents.</li><li>After every iPad reboot, Face ID is <strong>locked out</strong> until your passphrase has been entered once. The iOS security model enforces this, and Armored Vault honors it on top — <code>biometricSessionValid</code> flips to false after a fresh boot, and the lock screen requires the passphrase before Face ID is offered again. A freshly stolen, freshly rebooted iPad cannot be unlocked with a face alone, ever.</li><li>Any iOS-level security change — Face ID re-enrollment, a passcode change, an iOS update — invalidates the biometric entry. Next unlock requires your passphrase. The entry is then re-created (if you choose) with the new biometric template.</li><li>Disabling Face ID in Armored Vault deletes the biometric Keychain entry immediately. The MFEK copy is gone; only your passphrase can recover the vault.</li></ul>
+<p>**What Face ID does <em>not</em> do:**</p>
+<ul><li>It does not bypass your passphrase. Your passphrase is still the only thing that can recover the vault from a reboot, an iOS update, or a re-enrollment.</li><li>It does not weaken the encryption. The same AES-256-GCM is used; Face ID only changes how the MFEK gets back into memory.</li><li>It does not leak biometric data to Armored Vault. The app never sees your face — iOS hands the app a yes/no answer from the Secure Enclave, and that&#x27;s it.</li></ul>
+<p><strong>The honest tradeoff to be aware of:</strong> if someone with physical control over you can compel a Face ID match — by holding the iPad up to your face, for instance — they can unlock the vault while Face ID is in a valid session. That&#x27;s true of every Face ID-protected app. The mitigations are:</p>
+<ul><li><strong>Press the side button five times</strong> to immediately disable Face ID until the passphrase is entered. (This is an iOS-wide feature; learn it.)</li><li><strong>Use the Decoy Vault</strong> if duress is part of your threat model — see Article 3.</li><li><strong>Disable Face ID inside Armored Vault</strong> if your threat model includes &quot;someone might point my iPad at me.&quot; Settings → Face ID → off. The vault then requires your passphrase every time, period.</li></ul>
+<p>For everyone else, Face ID is a convenience layer built on the strongest hardware Apple offers. The math doesn&#x27;t get weaker. The passphrase remains the root of trust. Use Face ID with confidence — and know exactly when to turn it off.</p>
+<h2>The &quot;what if I forget?&quot; question</h2>
+<p>I&#x27;ll be direct: <strong>if you forget your passphrase, your vault is gone.</strong> Forever. There is no recovery email, no security questions, no Apple ID reset, no support ticket I can answer that will get your files back. The cryptography I described in the previous article makes recovery mathematically impossible — that&#x27;s the whole point. If I had a backdoor, the Department of Justice could compel me to use it. I don&#x27;t.</p>
+<p>This means <strong>the responsibility for remembering or storing your passphrase is yours.</strong> Take it seriously. Write it on paper. Put the paper somewhere physical and safe. The strength of an architecture that no government can break is also its hardest constraint: it cannot tell you apart from anyone else who doesn&#x27;t know the passphrase.</p>
+<h2>The bottom line</h2>
+<p>Generate it with the built-in tool. Write it on paper. Put the paper somewhere safe. Type the passphrase every day for two weeks until you know it cold. Don&#x27;t reuse it. Don&#x27;t share it. Don&#x27;t store it in your password manager.</p>
+<p>Do those things and your vault is protected by math that no current or near-future attacker can defeat. Skip them and the strongest encryption in the world doesn&#x27;t help you.</p>
+<p>— Robert</p>
+        </div>
+        <div class="article-pager">
+<a class="pager prev" href="01-how-encryption-works.html"><span class="pager-label">&larr; Previous</span><span class="pager-title">How Armored Vault Encrypts Your Files</span></a>
+<a class="pager next" href="03-what-armored-vault-doesnt-protect-against.html"><span class="pager-label">Next &rarr;</span><span class="pager-title">What Armored Vault Doesn&#x27;t Protect Against</span></a>
+</div>
+    </div>
+</article>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="nav-lock">&#128274;</span>
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad</p>
+        </div>
+        <nav class="footer-links">
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../index.html#features">Features</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

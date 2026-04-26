@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Files Outside the Vault — Armored Vault Learning Center</title>
+    <meta name="description" content="Importing, exporting, and the boundary between vaulted and unvaulted state.">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html#top" class="nav-brand">
+            <span class="nav-lock">&#128274;</span>
+            <span>Armored Vault</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html#features">Features</a>
+            <a href="../index.html#security">Security</a>
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<article class="article">
+    <div class="article-inner">
+        <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
+        <span class="eyebrow">ARMORED VAULT LEARNING CENTER</span>
+        <h1 class="article-title">Your Files Outside the Vault</h1>
+        <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+        <div class="article-body">
+<p>Armored Vault is excellent at one thing: keeping the files inside it private. But every file in your vault originally came from somewhere outside it — your camera roll, the Files app, an email attachment, a USB drive — and most files eventually leave the vault again, whether to share with someone, archive somewhere durable, or migrate to a new device.</p>
+<p>The handoff between &quot;inside the vault&quot; and &quot;outside the vault&quot; is one of the most underappreciated parts of personal security. This article is about doing those handoffs right.</p>
+<h2>What &quot;outside the vault&quot; actually means</h2>
+<p>When a file is inside Armored Vault, it has every protection I described in Article 1: encrypted under your passphrase-derived key, filename obscured, metadata sealed, integrity tagged per chunk. The moment that file lives anywhere else — even somewhere else on the same iPad — it has none of those protections. iOS&#x27;s at-rest encryption is good, but it&#x27;s tied to your iPad passcode, not your vault passphrase. That&#x27;s a categorically different security tier.</p>
+<p>So: every time a file leaves the vault, you are downgrading its protection. Sometimes that&#x27;s necessary. Sometimes it&#x27;s avoidable. The question is: are you doing it on purpose?</p>
+<h2>Importing: the &quot;before&quot; side of the boundary</h2>
+<p>Files you bring into the vault come from a small number of sources on iPad:</p>
+<ol><li><strong>Photos picker</strong> (your camera roll)</li><li><strong>Files app picker</strong> (iCloud Drive, Files, plugged-in storage)</li><li><strong>AirDrop / share sheet</strong> (from another device or app)</li><li><strong>External USB-C storage</strong> (drives, SD readers via the USB-C port)</li></ol>
+<p>Each of these has its own hygiene story.</p>
+<h3>From your Photos library</h3>
+<p>The cleanest source. You took the photos and videos yourself, on a device you control. The risk is low — but not zero. If your iPad has <em>ever</em> synced photos from a service that aggregates from other people (shared albums, iCloud Shared Library), some of those files were not actually taken by you, and the malicious-file scenario from Article 3 applies.</p>
+<p><strong>Recommendations:</strong></p>
+<ul><li>After you import photos and videos into the vault, <strong>delete the originals from your camera roll</strong> (and then empty Recently Deleted). The vault only protects what&#x27;s <em>inside</em> it. A copy in Photos is a copy outside the vault.</li><li>If the goal is to clean up your camera roll while keeping vault copies, batch-import then batch-delete. Don&#x27;t leave originals laying around for &quot;just in case&quot; — that defeats the point.</li></ul>
+<h3>From the Files app</h3>
+<p>This is where you import documents, PDFs, downloaded files, and anything you&#x27;ve previously stashed in iCloud Drive or another cloud provider. The risk depends entirely on how those files got there.</p>
+<p><strong>Recommendations:</strong></p>
+<ul><li>Import the file, verify it opens correctly inside the vault, then delete the source from Files.</li><li>Don&#x27;t trust filenames. A file called <code>tax_return_2024.pdf</code> could contain anything. Open it briefly <em>before</em> you import it, in a context where exposure is okay (the Files app preview), to confirm it&#x27;s what it claims to be.</li><li>If a file came down from a sync service (Drive, Dropbox, iCloud Drive), remember that sync providers keep deletion histories. Deleting from your local Files app doesn&#x27;t always remove the cloud copy. Sign in to the provider&#x27;s web interface and confirm the file is gone from its cloud-side trash too.</li></ul>
+<h3>From AirDrop or the share sheet</h3>
+<p>The risk depends on the sender. AirDrop from your spouse standing next to you is fine. AirDrop from a stranger in a coffee shop is hostile until proven otherwise.</p>
+<p><strong>Recommendations:</strong></p>
+<ul><li>Default your AirDrop setting to &quot;Contacts Only&quot; or &quot;Receiving Off.&quot; Switch to &quot;Everyone for 10 Minutes&quot; only when you&#x27;re actively expecting a transfer from someone in front of you, then let it switch back automatically.</li><li>If you receive an unexpected AirDrop, decline. You can&#x27;t know what&#x27;s in a file you didn&#x27;t expect.</li></ul>
+<h3>From external USB-C storage</h3>
+<p>External drives are a powerful and underused part of iPad workflows. They&#x27;re also a vector. The provenance of the drive matters more than the drive itself.</p>
+<p><strong>Recommendations:</strong></p>
+<ul><li>Use drives you bought yourself, sealed, from a known retailer.</li><li>A drive you&#x27;ve handed to someone else and gotten back is now of unknown provenance. The safe assumption is that any file that wasn&#x27;t on it when you handed it out, or any file modified while it was out of your control, could be hostile.</li><li>If you&#x27;re importing from a drive that&#x27;s traveled, plug it into a Mac or PC with file-scanning capability before plugging it into the iPad&#x27;s import flow.</li></ul>
+<h2>Inside the vault: the calm middle</h2>
+<p>Once a file is inside Armored Vault, it doesn&#x27;t need ongoing maintenance from you. The encryption protects it. The vault doesn&#x27;t talk to the network. The app doesn&#x27;t collect telemetry. You can leave a file in the vault for ten years and it will be exactly as protected on year ten as on day one.</p>
+<p>Two practices help even so:</p>
+<ul><li><strong>Empty Trash regularly.</strong> Deleted files go to Trash with restore support. They&#x27;re still encrypted, but if you&#x27;re sure they&#x27;re trash, emptying Trash removes them from your device entirely.</li><li><strong>Periodically open the decoy vault</strong> if you have one set up, and add some plausible content. A decoy that hasn&#x27;t been touched in two years is suspicious if anyone ever inspects it.</li></ul>
+<h2>Exporting: the &quot;after&quot; side of the boundary</h2>
+<p>This is where most people make mistakes. You spent all this effort encrypting your files, and then you export them somewhere that has none of those protections, and forget the exported copy exists.</p>
+<p>Armored Vault gives you three export paths:</p>
+<ol><li><strong>Plain ZIP</strong> — unencrypted ZIP archive. Convenience format. No password.</li><li><strong>Encrypted ZIP</strong> — AES-256-CTR encrypted, password-protected. Compatible with most ZIP tools (7-Zip, Keka, WinZip).</li><li><strong>Drive Export</strong> — direct upload to a USB-C drive, with optional Encrypted ZIP wrapping per file.</li></ol>
+<h3>Pick the right export format</h3>
+<ul><li><strong>For a destination you control end-to-end</strong>: Plain ZIP is fine. Examples: an encrypted external drive that lives in your home safe; your own home computer with FileVault on; another iPad of yours that you&#x27;ll re-import to a new vault.</li><li><strong>For anything that crosses the public internet or a system you don&#x27;t control</strong>: Encrypted ZIP, full stop. Email attachments, cloud uploads, drives going to a third party. Pick a strong passphrase for the ZIP. Communicate the passphrase to the recipient through a <em>different</em> channel than the one carrying the file. Phone call beats email. Text message beats email. <em>Any</em> second channel beats sending the file and password in the same message.</li><li><strong>For backups to USB-C drives</strong>: Drive Export with the Encrypted ZIP option per file is the strongest pattern. Each file is independently decryptable, so a corruption in one doesn&#x27;t take down the whole backup.</li></ul>
+<h3>Treat exports as time-limited</h3>
+<p>The biggest export mistake people make is forgetting that an export exists. You needed to send a PDF to your accountant, you exported it to Files, you emailed it, the accountant got it, the job is done — and now there&#x27;s a plaintext copy of that PDF sitting in Files until the heat death of your iPad.</p>
+<p><strong>Recommendation:</strong></p>
+<ul><li>After every export, set a calendar reminder for one week out: &quot;Delete export from Files.&quot; When the reminder fires, go delete the export. Empty Recently Deleted. Done.</li><li>For exports that went to cloud destinations (Drive, Dropbox, email &quot;sent&quot; folder), include those cleanup steps in the same reminder.</li></ul>
+<h3>What about sharing photos and videos?</h3>
+<p>When you want to send a photo or video to someone, the share sheet is the easiest path. Use it knowing what&#x27;s happening: the file is decrypted from the vault, handed to whatever app you chose to share with (Messages, Mail, Drive), and from that point lives in that app&#x27;s storage. Messages keeps a copy. Mail keeps a copy. Drive keeps a copy.</p>
+<p><strong>Recommendation:</strong></p>
+<ul><li>For sensitive shares, prefer the Encrypted ZIP path: export to Files, then attach the encrypted ZIP. The sender&#x27;s app keeps a copy too — but the copy is the encrypted ZIP, not the plaintext file.</li><li>For casual shares (a vacation photo to your spouse), use the share sheet directly. The risk is low and the friction of Encrypted ZIP isn&#x27;t worth it.</li></ul>
+<h2>Migrating to a new iPad</h2>
+<p>Eventually you&#x27;ll get a new iPad. Here&#x27;s how to bring your vault with you:</p>
+<ol><li>On the old iPad: open the vault, export to a USB-C drive using the Drive Export feature with Encrypted ZIPs.</li><li>Move the drive to the new iPad.</li><li>Install Armored Vault on the new iPad and set up a new vault (with the same or a new passphrase — your call).</li><li>Import from the drive.</li><li>Once you&#x27;ve verified everything imported correctly on the new iPad, securely erase the old iPad before disposing of it (Settings → General → Transfer or Reset iPad → Erase All Content and Settings).</li><li>Wipe the USB-C drive. Don&#x27;t leave a plaintext-encrypted-ZIP copy of your vault sitting on a drive in a desk drawer.</li></ol>
+<h2>What about iCloud?</h2>
+<p>A common question: &quot;Can Armored Vault sync to iCloud?&quot; The answer is no, and that&#x27;s intentional. iCloud sync would mean handing decrypted file metadata to Apple&#x27;s servers and creating cloud copies that your passphrase no longer protects.</p>
+<p>If you&#x27;re moving from another vault product that <em>did</em> use iCloud, Armored Vault can pull from iCloud as a one-time migration source — but the framing matters: pull from, not sync to. The endpoint is your iPad. The cloud is the source you&#x27;re migrating away from.</p>
+<h2>The bottom line</h2>
+<p>Inside the vault, files are safe. Outside the vault, they&#x27;re not. The boundary between the two is something <em>you</em> manage, every time you import or export.</p>
+<p>The discipline isn&#x27;t complicated:</p>
+<ul><li><strong>Import deliberately.</strong> Vet sources. Delete originals once they&#x27;re vaulted.</li><li><strong>Don&#x27;t leak through copies.</strong> Sync folders, share sheets, email drafts, and AirDrop history all create copies you might forget about.</li><li><strong>Export with intent.</strong> Encrypted ZIP for anything leaving your control. Plain ZIP only for trusted destinations. Calendar reminders for cleanup.</li><li><strong>Empty Trash, both in the vault and in Files.</strong> Don&#x27;t let &quot;I might want this back&quot; defeat your security model.</li></ul>
+<p>Treat the boundary like the lock on your front door — a checkpoint, not a permanent state. Files cross it deliberately, in both directions. When they&#x27;re inside, the vault has them. When they&#x27;re outside, you do.</p>
+<p>— Robert</p>
+        </div>
+        <div class="article-pager">
+<a class="pager prev" href="03-what-armored-vault-doesnt-protect-against.html"><span class="pager-label">&larr; Previous</span><span class="pager-title">What Armored Vault Doesn&#x27;t Protect Against</span></a>
+<a class="pager next" href="05-why-i-dont-collect-your-data.html"><span class="pager-label">Next &rarr;</span><span class="pager-title">Why I Don&#x27;t Collect Your Data</span></a>
+</div>
+    </div>
+</article>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="nav-lock">&#128274;</span>
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad</p>
+        </div>
+        <nav class="footer-links">
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../index.html#features">Features</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
