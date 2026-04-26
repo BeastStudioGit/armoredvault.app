@@ -216,7 +216,7 @@ PAGE = """<!DOCTYPE html>
     <meta name="description" content="{summary}">
     <link rel="icon" type="image/png" href="../assets/app-icon.png">
     <link rel="apple-touch-icon" href="../assets/app-icon.png">
-    <link rel="stylesheet" href="../style.css?v=20260426d">
+    <link rel="stylesheet" href="../style.css?v=20260426e">
 </head>
 <body>
 
@@ -226,6 +226,9 @@ PAGE = """<!DOCTYPE html>
             <img class="nav-icon" src="../assets/app-icon.png" alt="">
             <span>Armored Vault</span>
         </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav class="nav-links">
             <a href="../index.html#features">Features</a>
             <a href="../index.html#security">Security</a>
@@ -277,6 +280,7 @@ PAGE = """<!DOCTYPE html>
     </div>
 </footer>
 
+<script src="../assets/nav.js"></script>
 </body>
 </html>
 """
