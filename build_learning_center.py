@@ -18,31 +18,36 @@ ARTICLES = [
      "AES-256-GCM, PBKDF2, KEK-wrapped MFEK, UUID filenames — the architecture, in plain language.",
      "01",
      "01-encryption.svg",
-     "Plaintext file names dissolving into encrypted ciphertext blocks"),
+     "Plaintext file names dissolving into encrypted ciphertext blocks",
+     "April 6, 2026"),
     ("02-choosing-a-strong-passphrase",
      "Choosing a Strong Passphrase",
      "Why a 10-word Diceware passphrase is the right answer, and how Face ID still keeps you safe.",
      "02",
      "02-passphrase.svg",
-     "Three dice surrounded by floating Diceware words"),
+     "Three dice surrounded by floating Diceware words",
+     "April 9, 2026"),
     ("03-what-armored-vault-doesnt-protect-against",
      "What Armored Vault Doesn't Protect Against",
      "The honest list of limits — and the common-sense moves that defeat each one.",
      "03",
      "03-limits.svg",
-     "A shield with cracks symbolizing the limits of protection"),
+     "A shield with cracks symbolizing the limits of protection",
+     "April 12, 2026"),
     ("04-your-files-outside-the-vault",
      "Your Files Outside the Vault",
      "Importing, exporting, and the boundary between vaulted and unvaulted state.",
      "04",
      "04-boundary.svg",
-     "A boundary line dividing vaulted files from unvaulted ones"),
+     "A boundary line dividing vaulted files from unvaulted ones",
+     "April 15, 2026"),
     ("05-why-i-dont-collect-your-data",
      "Why I Don't Collect Your Data",
      "Zero analytics, zero telemetry, zero servers — and how you can verify it.",
      "05",
      "05-no-data.svg",
-     "A device with all outbound network requests blocked"),
+     "A device with all outbound network requests blocked",
+     "April 18, 2026"),
 ]
 
 NUMBERED_RE = re.compile(r'^(\d+)\.\s+(.*)$')
@@ -234,7 +239,7 @@ PAGE = """<!DOCTYPE html>
         <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
         <span class="eyebrow">LEARNING CENTER &middot; ARTICLE {num}</span>
         <h1>{title}</h1>
-        <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+        <p class="article-meta">By Robert Lewis &middot; {date}</p>
     </div>
 </section>
 
@@ -289,7 +294,7 @@ def nav_block(prev_a, next_a):
 
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for idx, (slug, title, summary, num, image, image_alt) in enumerate(ARTICLES):
+    for idx, (slug, title, summary, num, image, image_alt, date) in enumerate(ARTICLES):
         src = SRC_DIR / f"{slug}.md"
         md = strip_frontmatter(src.read_text(encoding="utf-8"))
         blocks = list(parse_blocks(md))
@@ -304,6 +309,7 @@ def main():
             num=num,
             image=image,
             image_alt=html.escape(image_alt),
+            date=html.escape(date),
         )
         out_path = OUT_DIR / f"{slug}.html"
         out_path.write_text(page, encoding="utf-8")
