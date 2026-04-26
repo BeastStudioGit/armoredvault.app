@@ -209,7 +209,7 @@ PAGE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} — Armored Vault Learning Center</title>
     <meta name="description" content="{summary}">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=20260426a">
 </head>
 <body>
 
