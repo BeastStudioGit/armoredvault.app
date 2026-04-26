@@ -16,23 +16,33 @@ ARTICLES = [
     ("01-how-encryption-works",
      "How Armored Vault Encrypts Your Files",
      "AES-256-GCM, PBKDF2, KEK-wrapped MFEK, UUID filenames — the architecture, in plain language.",
-     "01"),
+     "01",
+     "01-encryption.svg",
+     "Plaintext file names dissolving into encrypted ciphertext blocks"),
     ("02-choosing-a-strong-passphrase",
      "Choosing a Strong Passphrase",
      "Why a 10-word Diceware passphrase is the right answer, and how Face ID still keeps you safe.",
-     "02"),
+     "02",
+     "02-passphrase.svg",
+     "Three dice surrounded by floating Diceware words"),
     ("03-what-armored-vault-doesnt-protect-against",
      "What Armored Vault Doesn't Protect Against",
      "The honest list of limits — and the common-sense moves that defeat each one.",
-     "03"),
+     "03",
+     "03-limits.svg",
+     "A shield with cracks symbolizing the limits of protection"),
     ("04-your-files-outside-the-vault",
      "Your Files Outside the Vault",
      "Importing, exporting, and the boundary between vaulted and unvaulted state.",
-     "04"),
+     "04",
+     "04-boundary.svg",
+     "A boundary line dividing vaulted files from unvaulted ones"),
     ("05-why-i-dont-collect-your-data",
      "Why I Don't Collect Your Data",
      "Zero analytics, zero telemetry, zero servers — and how you can verify it.",
-     "05"),
+     "05",
+     "05-no-data.svg",
+     "A device with all outbound network requests blocked"),
 ]
 
 NUMBERED_RE = re.compile(r'^(\d+)\.\s+(.*)$')
@@ -228,6 +238,10 @@ PAGE = """<!DOCTYPE html>
     </div>
 </section>
 
+<div class="article-hero-image">
+    <img src="images/{image}" alt="{image_alt}" loading="lazy">
+</div>
+
 <article class="article-section">
     <div class="article-inner">
         <div class="article-body">
@@ -275,7 +289,7 @@ def nav_block(prev_a, next_a):
 
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for idx, (slug, title, summary, num) in enumerate(ARTICLES):
+    for idx, (slug, title, summary, num, image, image_alt) in enumerate(ARTICLES):
         src = SRC_DIR / f"{slug}.md"
         md = strip_frontmatter(src.read_text(encoding="utf-8"))
         blocks = list(parse_blocks(md))
@@ -288,6 +302,8 @@ def main():
             body=body,
             nav_block=nav_block(prev_a, next_a),
             num=num,
+            image=image,
+            image_alt=html.escape(image_alt),
         )
         out_path = OUT_DIR / f"{slug}.html"
         out_path.write_text(page, encoding="utf-8")

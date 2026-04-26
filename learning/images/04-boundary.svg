@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A boundary line dividing vaulted files from unvaulted ones">
+  <defs>
+    <linearGradient id="bd-bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#001a2e"/>
+      <stop offset="0.5" stop-color="#04111c"/>
+      <stop offset="1" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="bd-line" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#64d2ff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#64d2ff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#64d2ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="bd-glow-l" cx="0.3" cy="0.5" r="0.4">
+      <stop offset="0" stop-color="#0a84ff" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#0a84ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bd-doc-in" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2a3a"/>
+      <stop offset="1" stop-color="#0e1521"/>
+    </linearGradient>
+    <linearGradient id="bd-doc-out" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2a2a"/>
+      <stop offset="1" stop-color="#161616"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#bd-bg)"/>
+  <rect width="1200" height="600" fill="url(#bd-glow-l)"/>
+
+  <!-- Section labels -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" letter-spacing="3">
+    <text x="60" y="80" fill="#64d2ff">INSIDE THE VAULT</text>
+    <text x="1140" y="80" text-anchor="end" fill="#8e8e93">OUTSIDE THE VAULT</text>
+  </g>
+
+  <!-- Boundary line, vertical center -->
+  <g>
+    <rect x="598" y="60" width="4" height="480" fill="url(#bd-line)"/>
+    <text x="600" y="40" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" letter-spacing="3" fill="#64d2ff" opacity="0.8">BOUNDARY</text>
+  </g>
+
+  <!-- INSIDE: encrypted document tiles (left) -->
+  <g>
+    <g transform="translate(140 180)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-in)" stroke="#64d2ff" stroke-opacity="0.55" stroke-width="1.5"/>
+      <g stroke="#64d2ff" stroke-opacity="0.4" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+      </g>
+      <g transform="translate(60 110)" fill="#64d2ff" opacity="0.85">
+        <rect x="-10" y="-2" width="20" height="14" rx="2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+        <path d="M-6 -2 V-7 a6 6 0 0 1 12 0 V-2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+      </g>
+    </g>
+    <g transform="translate(310 240)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-in)" stroke="#64d2ff" stroke-opacity="0.55" stroke-width="1.5"/>
+      <g stroke="#64d2ff" stroke-opacity="0.4" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+      </g>
+      <g transform="translate(60 110)" fill="#64d2ff" opacity="0.85">
+        <rect x="-10" y="-2" width="20" height="14" rx="2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+        <path d="M-6 -2 V-7 a6 6 0 0 1 12 0 V-2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+      </g>
+    </g>
+    <g transform="translate(460 180)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-in)" stroke="#64d2ff" stroke-opacity="0.55" stroke-width="1.5"/>
+      <g stroke="#64d2ff" stroke-opacity="0.4" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+      </g>
+      <g transform="translate(60 110)" fill="#64d2ff" opacity="0.85">
+        <rect x="-10" y="-2" width="20" height="14" rx="2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+        <path d="M-6 -2 V-7 a6 6 0 0 1 12 0 V-2" fill="none" stroke="#64d2ff" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- OUTSIDE: plain document tiles (right) -->
+  <g>
+    <g transform="translate(620 180)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-out)" stroke="#5a5a5a" stroke-width="1.5"/>
+      <g stroke="#8e8e93" stroke-opacity="0.6" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+        <line x1="20" y1="92" x2="100" y2="92"/>
+        <line x1="20" y1="112" x2="60" y2="112"/>
+      </g>
+    </g>
+    <g transform="translate(790 240)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-out)" stroke="#5a5a5a" stroke-width="1.5"/>
+      <g stroke="#8e8e93" stroke-opacity="0.6" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+        <line x1="20" y1="92" x2="100" y2="92"/>
+        <line x1="20" y1="112" x2="60" y2="112"/>
+      </g>
+    </g>
+    <g transform="translate(940 180)">
+      <rect width="120" height="150" rx="10" fill="url(#bd-doc-out)" stroke="#5a5a5a" stroke-width="1.5"/>
+      <g stroke="#8e8e93" stroke-opacity="0.6" stroke-width="2">
+        <line x1="20" y1="32" x2="100" y2="32"/>
+        <line x1="20" y1="52" x2="100" y2="52"/>
+        <line x1="20" y1="72" x2="80" y2="72"/>
+        <line x1="20" y1="92" x2="100" y2="92"/>
+        <line x1="20" y1="112" x2="60" y2="112"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Crossing arrows (deliberate handoff) -->
+  <g stroke="#64d2ff" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M580 320 L 620 320"/>
+    <path d="M610 312 L 620 320 L 610 328"/>
+    <path d="M620 360 L 580 360"/>
+    <path d="M590 352 L 580 360 L 590 368"/>
+  </g>
+</svg>

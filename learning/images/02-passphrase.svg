@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Three dice surrounded by floating Diceware words">
+  <defs>
+    <linearGradient id="pp-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e2a1a"/>
+      <stop offset="1" stop-color="#04120a"/>
+    </linearGradient>
+    <radialGradient id="pp-glow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#34c759" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#34c759" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pp-die-face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1f24"/>
+      <stop offset="1" stop-color="#0f1216"/>
+    </linearGradient>
+    <linearGradient id="pp-die-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#262a30"/>
+      <stop offset="1" stop-color="#1a1d22"/>
+    </linearGradient>
+    <linearGradient id="pp-die-side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#15181c"/>
+      <stop offset="1" stop-color="#0c0e11"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#pp-bg)"/>
+  <rect width="1200" height="600" fill="url(#pp-glow)"/>
+
+  <!-- Floating Diceware words -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-weight="500">
+    <g opacity="0.45" fill="#9be9a9">
+      <text x="80"  y="120" font-size="20">marble</text>
+      <text x="220" y="80"  font-size="16">river</text>
+      <text x="420" y="100" font-size="22">thunder</text>
+      <text x="700" y="80"  font-size="18">candle</text>
+      <text x="900" y="120" font-size="20">pillow</text>
+      <text x="1060" y="90" font-size="16">orange</text>
+    </g>
+    <g opacity="0.6" fill="#34c759">
+      <text x="120" y="500" font-size="18">compass</text>
+      <text x="320" y="540" font-size="22">dolphin</text>
+      <text x="560" y="510" font-size="20">fossil</text>
+      <text x="780" y="540" font-size="18">whisper</text>
+      <text x="980" y="510" font-size="22">neon</text>
+    </g>
+  </g>
+
+  <!-- Isometric die helper grouping -->
+  <!-- Die 1 -->
+  <g transform="translate(360 290)">
+    <!-- top face -->
+    <polygon points="0,0 90,-50 180,0 90,50" fill="url(#pp-die-top)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <!-- left face -->
+    <polygon points="0,0 0,90 90,140 90,50" fill="url(#pp-die-face)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <!-- right face -->
+    <polygon points="180,0 180,90 90,140 90,50" fill="url(#pp-die-side)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <!-- pips: face shows 5 -->
+    <g fill="#9be9a9">
+      <circle cx="20" cy="65" r="6"/>
+      <circle cx="60" cy="100" r="6"/>
+      <circle cx="40" cy="83" r="6" opacity="0.7"/>
+    </g>
+    <g fill="#9be9a9">
+      <circle cx="115" cy="78" r="6"/>
+      <circle cx="155" cy="98" r="6"/>
+      <circle cx="135" cy="115" r="6"/>
+    </g>
+  </g>
+
+  <!-- Die 2 -->
+  <g transform="translate(550 230)">
+    <polygon points="0,0 90,-50 180,0 90,50" fill="url(#pp-die-top)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <polygon points="0,0 0,90 90,140 90,50" fill="url(#pp-die-face)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <polygon points="180,0 180,90 90,140 90,50" fill="url(#pp-die-side)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <g fill="#9be9a9">
+      <circle cx="22" cy="60" r="6"/>
+      <circle cx="40" cy="80" r="6"/>
+      <circle cx="60" cy="100" r="6"/>
+      <circle cx="22" cy="100" r="6"/>
+      <circle cx="60" cy="60" r="6"/>
+    </g>
+    <g fill="#9be9a9">
+      <circle cx="115" cy="80" r="6"/>
+      <circle cx="155" cy="100" r="6"/>
+    </g>
+  </g>
+
+  <!-- Die 3 -->
+  <g transform="translate(740 290)">
+    <polygon points="0,0 90,-50 180,0 90,50" fill="url(#pp-die-top)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <polygon points="0,0 0,90 90,140 90,50" fill="url(#pp-die-face)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <polygon points="180,0 180,90 90,140 90,50" fill="url(#pp-die-side)" stroke="#34c759" stroke-opacity="0.5" stroke-width="1.5"/>
+    <g fill="#9be9a9">
+      <circle cx="22" cy="60" r="6"/>
+      <circle cx="60" cy="60" r="6"/>
+      <circle cx="22" cy="100" r="6"/>
+      <circle cx="60" cy="100" r="6"/>
+    </g>
+    <g fill="#9be9a9">
+      <circle cx="135" cy="95" r="6"/>
+    </g>
+  </g>
+
+  <!-- Subtle entropy label -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#34c759" opacity="0.85">
+    <text x="600" y="465" font-size="13" letter-spacing="3" text-anchor="middle">~129 BITS OF ENTROPY</text>
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A shield with cracks symbolizing limits to protection">
+  <defs>
+    <linearGradient id="lim-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a0e10"/>
+      <stop offset="1" stop-color="#120608"/>
+    </linearGradient>
+    <radialGradient id="lim-glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#ff3b30" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#ff3b30" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lim-shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c1f24"/>
+      <stop offset="1" stop-color="#0a0c10"/>
+    </linearGradient>
+    <linearGradient id="lim-stroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6b60"/>
+      <stop offset="1" stop-color="#ff3b30"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#lim-bg)"/>
+  <rect width="1200" height="600" fill="url(#lim-glow)"/>
+
+  <!-- Shield -->
+  <g transform="translate(600 300)">
+    <path d="M0 -190 C 90 -180, 160 -150, 180 -130 L 180 30 C 180 120, 110 175, 0 220 C -110 175, -180 120, -180 30 L -180 -130 C -160 -150, -90 -180, 0 -190 Z"
+          fill="url(#lim-shield)" stroke="url(#lim-stroke)" stroke-width="3"/>
+
+    <!-- Cracks -->
+    <g stroke="#ff3b30" stroke-width="2.5" fill="none" opacity="0.85" stroke-linecap="round">
+      <path d="M-40 -150 L 0 -80 L -30 -20 L 20 50 L -20 110 L 40 180"/>
+      <path d="M0 -80 L 40 -100"/>
+      <path d="M-30 -20 L -90 -10"/>
+      <path d="M20 50 L 90 30"/>
+      <path d="M-20 110 L -80 130"/>
+    </g>
+    <g fill="#ff3b30" opacity="0.6">
+      <circle cx="0" cy="-80" r="3"/>
+      <circle cx="-30" cy="-20" r="3"/>
+      <circle cx="20" cy="50" r="3"/>
+      <circle cx="-20" cy="110" r="3"/>
+    </g>
+  </g>
+
+  <!-- Caption pills around shield -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" letter-spacing="2" fill="#ff8a82">
+    <g opacity="0.85">
+      <text x="155" y="170" text-anchor="end">MALICIOUS IMPORTS</text>
+      <text x="155" y="450" text-anchor="end">EXPORTS YOU FORGOT</text>
+      <text x="1045" y="170">SHOULDER-SURFING</text>
+      <text x="1045" y="320">COERCED DISCLOSURE</text>
+      <text x="1045" y="450">UNCONTROLLED BACKUPS</text>
+    </g>
+  </g>
+
+  <!-- Connector dashes from labels toward shield, just left/right -->
+  <g stroke="#ff3b30" stroke-width="1" stroke-dasharray="3 4" opacity="0.4">
+    <path d="M165 165 L 410 220" />
+    <path d="M165 445 L 410 380" />
+    <path d="M790 220 L 1035 165" />
+    <path d="M790 300 L 1035 315" />
+    <path d="M790 380 L 1035 445" />
+  </g>
+</svg>

@@ -27,61 +27,76 @@
 </header>
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="support-hero">
-    <div class="support-hero-inner">
+<section class="lc-hero">
+    <div class="lc-hero-inner">
         <span class="eyebrow">LEARNING CENTER</span>
-        <h1>How the vault works.<br>And how to use it well.</h1>
-        <p class="hero-sub">Five plain-language articles on the encryption architecture, the passphrase that anchors it, the limits to be aware of, and the design choices behind Armored Vault.</p>
+        <h1>Learning Center</h1>
+        <p class="hero-sub">Architecture decisions, threat-model honesty, and the philosophy behind a vault that collects nothing.</p>
     </div>
 </section>
 
-<!-- ═══════════════════ ARTICLES ═══════════════════ -->
-<section class="features" id="articles">
-    <div class="section-head">
-        <h2>Five articles. Plain language.</h2>
-        <p>Read in any order. Each one stands alone.</p>
-    </div>
+<!-- ═══════════════════ POSTS ═══════════════════ -->
+<section class="lc-posts">
+    <div class="lc-posts-inner">
 
-    <div class="feature-grid">
-
-        <a class="feature feature-link" href="learning/01-how-encryption-works.html">
-            <div class="feature-icon blue">&#128274;</div>
-            <span class="feature-num">Article 01</span>
-            <h3>How Armored Vault Encrypts Your Files</h3>
-            <p>AES-256-GCM, PBKDF2 with 600K iterations, a passphrase-derived KEK that wraps the master file key, UUID filenames, and an encrypted AVMD metadata header. The complete architecture in plain language.</p>
-            <span class="feature-cta">Read the article &rarr;</span>
+        <a class="lc-post" href="learning/01-how-encryption-works.html">
+            <div class="lc-post-media">
+                <img src="learning/images/01-encryption.svg" alt="Encrypted data grid" loading="lazy">
+            </div>
+            <div class="lc-post-body">
+                <p class="lc-post-meta">April 25, 2026 &nbsp;·&nbsp; Architecture, Encryption, AES-256</p>
+                <h2 class="lc-post-title">How Armored Vault Encrypts Your Files</h2>
+                <p class="lc-post-excerpt">AES-256-GCM, PBKDF2 with 600K iterations, a passphrase-derived KEK that wraps the master file key, UUID filenames, and an encrypted AVMD metadata header. The complete architecture in plain language — no marketing, no hand-waving.</p>
+                <span class="lc-post-cta">Read more &rarr;</span>
+            </div>
         </a>
 
-        <a class="feature feature-link" href="learning/02-choosing-a-strong-passphrase.html">
-            <div class="feature-icon green">&#127922;</div>
-            <span class="feature-num">Article 02</span>
-            <h3>Choosing a Strong Passphrase</h3>
-            <p>Why a 10-word Diceware passphrase is the right answer, what makes it ~130 bits of entropy, and exactly how Face ID still keeps you safe given the technology underneath.</p>
-            <span class="feature-cta">Read the article &rarr;</span>
+        <a class="lc-post" href="learning/02-choosing-a-strong-passphrase.html">
+            <div class="lc-post-media">
+                <img src="learning/images/02-passphrase.svg" alt="Diceware dice and word fragments" loading="lazy">
+            </div>
+            <div class="lc-post-body">
+                <p class="lc-post-meta">April 25, 2026 &nbsp;·&nbsp; Passphrases, Diceware, Face ID</p>
+                <h2 class="lc-post-title">Choosing a Strong Passphrase</h2>
+                <p class="lc-post-excerpt">Why a 10-word Diceware passphrase is the right answer, what makes it ~129 bits of entropy, and exactly how Face ID still keeps you safe given the Secure Enclave technology underneath.</p>
+                <span class="lc-post-cta">Read more &rarr;</span>
+            </div>
         </a>
 
-        <a class="feature feature-link" href="learning/03-what-armored-vault-doesnt-protect-against.html">
-            <div class="feature-icon red">&#9888;&#65039;</div>
-            <span class="feature-num">Article 03</span>
-            <h3>What Armored Vault Doesn't Protect Against</h3>
-            <p>The honest list of limits — malicious imports, weak passphrases, shoulder-surfing, exports outside the vault, uncontrolled backups — and the common-sense recommendations that defeat each one.</p>
-            <span class="feature-cta">Read the article &rarr;</span>
+        <a class="lc-post" href="learning/03-what-armored-vault-doesnt-protect-against.html">
+            <div class="lc-post-media">
+                <img src="learning/images/03-limits.svg" alt="A shield with cracks symbolizing limits" loading="lazy">
+            </div>
+            <div class="lc-post-body">
+                <p class="lc-post-meta">April 25, 2026 &nbsp;·&nbsp; Threat Model, Honesty, Recommendations</p>
+                <h2 class="lc-post-title">What Armored Vault Doesn't Protect Against</h2>
+                <p class="lc-post-excerpt">The honest list of limits — malicious imports, weak passphrases, shoulder-surfing, exports outside the vault, uncontrolled backups — and the common-sense recommendations that defeat each one.</p>
+                <span class="lc-post-cta">Read more &rarr;</span>
+            </div>
         </a>
 
-        <a class="feature feature-link" href="learning/04-your-files-outside-the-vault.html">
-            <div class="feature-icon cyan">&#128190;</div>
-            <span class="feature-num">Article 04</span>
-            <h3>Your Files Outside the Vault</h3>
-            <p>Importing, exporting, and the boundary between vaulted and unvaulted state — the underappreciated half of personal security, and how to manage the handoffs deliberately.</p>
-            <span class="feature-cta">Read the article &rarr;</span>
+        <a class="lc-post" href="learning/04-your-files-outside-the-vault.html">
+            <div class="lc-post-media">
+                <img src="learning/images/04-boundary.svg" alt="Files crossing the vault boundary" loading="lazy">
+            </div>
+            <div class="lc-post-body">
+                <p class="lc-post-meta">April 25, 2026 &nbsp;·&nbsp; Imports, Exports, Workflow</p>
+                <h2 class="lc-post-title">Your Files Outside the Vault</h2>
+                <p class="lc-post-excerpt">Importing, exporting, and the boundary between vaulted and unvaulted state — the underappreciated half of personal security, and how to manage every handoff deliberately.</p>
+                <span class="lc-post-cta">Read more &rarr;</span>
+            </div>
         </a>
 
-        <a class="feature feature-link" href="learning/05-why-i-dont-collect-your-data.html">
-            <div class="feature-icon indigo">&#128683;</div>
-            <span class="feature-num">Article 05</span>
-            <h3>Why I Don't Collect Your Data</h3>
-            <p>Zero analytics, zero telemetry, zero servers. The technical version of what's actually happening on the network — and how you can verify it yourself with Charles Proxy or Little Snitch.</p>
-            <span class="feature-cta">Read the article &rarr;</span>
+        <a class="lc-post" href="learning/05-why-i-dont-collect-your-data.html">
+            <div class="lc-post-media">
+                <img src="learning/images/05-no-data.svg" alt="Outbound network requests blocked at device" loading="lazy">
+            </div>
+            <div class="lc-post-body">
+                <p class="lc-post-meta">April 25, 2026 &nbsp;·&nbsp; Privacy, Telemetry, Subpoena Defense</p>
+                <h2 class="lc-post-title">Why I Don't Collect Your Data</h2>
+                <p class="lc-post-excerpt">Zero analytics, zero telemetry, zero servers. The technical version of what's actually happening on the network — and how you can verify it yourself with Charles Proxy or Little Snitch.</p>
+                <span class="lc-post-cta">Read more &rarr;</span>
+            </div>
         </a>
 
     </div>

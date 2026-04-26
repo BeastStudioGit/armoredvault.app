@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A device with outbound network requests blocked, no data leaving">
+  <defs>
+    <linearGradient id="nd-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1230"/>
+      <stop offset="1" stop-color="#0a0414"/>
+    </linearGradient>
+    <radialGradient id="nd-glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#bf5af2" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#bf5af2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="nd-device" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2330"/>
+      <stop offset="1" stop-color="#0e111a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#nd-bg)"/>
+  <rect width="1200" height="600" fill="url(#nd-glow)"/>
+
+  <!-- Centered iPad device -->
+  <g transform="translate(600 300)">
+    <rect x="-150" y="-200" width="300" height="400" rx="22" fill="url(#nd-device)" stroke="#bf5af2" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="-130" y="-180" width="260" height="360" rx="6" fill="#0a0414" stroke="#bf5af2" stroke-opacity="0.25" stroke-width="1"/>
+    <!-- lock badge -->
+    <g transform="translate(0 0)" stroke="#bf5af2" fill="none" stroke-width="2.5">
+      <rect x="-30" y="-12" width="60" height="50" rx="6"/>
+      <path d="M-18 -12 V-25 a18 18 0 0 1 36 0 V-12"/>
+    </g>
+    <circle cx="0" cy="14" r="5" fill="#bf5af2"/>
+    <rect x="-2" y="14" width="4" height="14" fill="#bf5af2"/>
+  </g>
+
+  <!-- Outbound request attempts blocked -->
+  <g stroke="#bf5af2" stroke-width="2" fill="none">
+    <!-- Top outbound -->
+    <g opacity="0.7">
+      <path d="M620 110 L 760 60" stroke-dasharray="6 6"/>
+      <g transform="translate(780 50)">
+        <circle r="22" fill="#1c1230" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="-12" y1="-12" x2="12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+        <line x1="12" y1="-12" x2="-12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+      </g>
+    </g>
+    <!-- Right outbound -->
+    <g opacity="0.7">
+      <path d="M760 280 L 920 280" stroke-dasharray="6 6"/>
+      <g transform="translate(945 280)">
+        <circle r="22" fill="#1c1230" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="-12" y1="-12" x2="12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+        <line x1="12" y1="-12" x2="-12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+      </g>
+    </g>
+    <!-- Bottom outbound -->
+    <g opacity="0.7">
+      <path d="M620 480 L 760 540" stroke-dasharray="6 6"/>
+      <g transform="translate(780 550)">
+        <circle r="22" fill="#1c1230" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="-12" y1="-12" x2="12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+        <line x1="12" y1="-12" x2="-12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+      </g>
+    </g>
+    <!-- Left outbound -->
+    <g opacity="0.7">
+      <path d="M440 280 L 280 280" stroke-dasharray="6 6"/>
+      <g transform="translate(255 280)">
+        <circle r="22" fill="#1c1230" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="-12" y1="-12" x2="12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+        <line x1="12" y1="-12" x2="-12" y2="12" stroke="#ff3b30" stroke-width="3"/>
+      </g>
+    </g>
+    <!-- Top left outbound -->
+    <g opacity="0.55">
+      <path d="M460 130 L 320 80" stroke-dasharray="6 6"/>
+      <g transform="translate(300 70)">
+        <circle r="18" fill="#1c1230" stroke="#ff3b30" stroke-width="2"/>
+        <line x1="-9" y1="-9" x2="9" y2="9" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="9" y1="-9" x2="-9" y2="9" stroke="#ff3b30" stroke-width="2.5"/>
+      </g>
+    </g>
+    <!-- Bottom left outbound -->
+    <g opacity="0.55">
+      <path d="M460 460 L 320 520" stroke-dasharray="6 6"/>
+      <g transform="translate(300 530)">
+        <circle r="18" fill="#1c1230" stroke="#ff3b30" stroke-width="2"/>
+        <line x1="-9" y1="-9" x2="9" y2="9" stroke="#ff3b30" stroke-width="2.5"/>
+        <line x1="9" y1="-9" x2="-9" y2="9" stroke="#ff3b30" stroke-width="2.5"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Caption labels -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#bf5af2" opacity="0.8">
+    <text x="845" y="55" text-anchor="middle">ANALYTICS</text>
+    <text x="1010" y="284" text-anchor="middle">TELEMETRY</text>
+    <text x="845" y="555" text-anchor="middle">CRASH SDK</text>
+    <text x="190" y="284" text-anchor="middle">TRACKING</text>
+  </g>
+
+  <text x="600" y="585" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" letter-spacing="3" fill="#bf5af2" opacity="0.7">ZERO OUTBOUND CONNECTIONS</text>
+</svg>

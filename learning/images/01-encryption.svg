@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Abstract grid of encrypted data blocks transitioning into ciphertext">
+  <defs>
+    <linearGradient id="enc-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1530"/>
+      <stop offset="1" stop-color="#050a18"/>
+    </linearGradient>
+    <radialGradient id="enc-glow" cx="0.25" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="#0a84ff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#0a84ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="enc-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0a84ff"/>
+      <stop offset="1" stop-color="#3498ff" stop-opacity="0.15"/>
+    </linearGradient>
+    <pattern id="enc-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0a84ff" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#enc-bg)"/>
+  <rect width="1200" height="600" fill="url(#enc-grid)"/>
+  <rect width="1200" height="600" fill="url(#enc-glow)"/>
+
+  <!-- Plaintext columns (left) → ciphertext blocks (right) -->
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="22" fill="#e6f0ff">
+    <text x="80" y="180" opacity="0.85">Personal photos</text>
+    <text x="80" y="220" opacity="0.7">Tax_2025.pdf</text>
+    <text x="80" y="260" opacity="0.55">Will.docx</text>
+    <text x="80" y="300" opacity="0.4">Passport.jpg</text>
+    <text x="80" y="340" opacity="0.25">Notes.md</text>
+    <text x="80" y="380" opacity="0.12">Drivers_lic.png</text>
+  </g>
+
+  <!-- Arrow flow -->
+  <g stroke="#0a84ff" stroke-width="2" fill="none" opacity="0.9">
+    <path d="M460 280 L540 280" />
+    <path d="M520 268 L540 280 L520 292" />
+  </g>
+  <text x="475" y="258" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#3498ff" letter-spacing="2">AES-256</text>
+
+  <!-- Ciphertext blocks (right grid) -->
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="14" fill="#3498ff">
+    <text x="580" y="120" opacity="0.95">4f8e7d10c9b2a847e6  9a2b1c44f3e078f107  c1d8f3a9b07e6e2222</text>
+    <text x="580" y="150" opacity="0.85">7e3a91f2bc4d83e51c  21de9c0a73fa08bb74  6b4f29ad81e3704c0f</text>
+    <text x="580" y="180" opacity="0.75">8c5b2974f6a01debe3  dfa7203c19eb842a06  3b91e0fa72c45dab18</text>
+    <text x="580" y="210" opacity="0.65">5d20f6ac783efb1c44  2718a3d9be60c45f0d  91c47e30b5fa28d6e2</text>
+    <text x="580" y="240" opacity="0.55">a073eb18d54f9e2c30  fce8b14702d3a98615  4e2d8a37c1bf09e544</text>
+    <text x="580" y="270" opacity="0.45">2c9d4e718fab30c587  bd6f3201ace74d9028  f14a5c3e08bd920671</text>
+    <text x="580" y="300" opacity="0.35">d80a4f127be3c6e190  76e2d5b108fa9c4321  abc35e9f2401d7b86c</text>
+    <text x="580" y="330" opacity="0.25">9f7c1a8b3e205d6f47  4c3e1f0a8b95d27aef  e60d4b95ca1f7320d8</text>
+    <text x="580" y="360" opacity="0.18">3a5e8c0bd47f12e9a6  7d2f8013ba6e9c4051  b8e2f014c907ad536e</text>
+    <text x="580" y="390" opacity="0.12">6e1c9f0a82d34b5d70  c014e8a7592f63bd11  053acef82741b9d680</text>
+    <text x="580" y="420" opacity="0.08">217f0a9b438e6c1d52  f4920b1ce67d845a30  825e6dfb103c947be1</text>
+  </g>
+
+  <!-- Subtle lock motif top right -->
+  <g transform="translate(1020 90)" opacity="0.55">
+    <rect x="-30" y="-10" width="60" height="48" rx="6" fill="none" stroke="#3498ff" stroke-width="2"/>
+    <path d="M-18 -10 V-22 a18 18 0 0 1 36 0 V-10" fill="none" stroke="#3498ff" stroke-width="2"/>
+    <circle cx="0" cy="14" r="4" fill="#3498ff"/>
+    <rect x="-2" y="14" width="4" height="12" fill="#3498ff"/>
+  </g>
+</svg>
