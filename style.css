@@ -866,133 +866,72 @@ img { display: block; max-width: 100%; height: auto; }
     transform: scale(0.96);
 }
 
-/* ═══════════════════ LEARNING CENTER ═══════════════════ */
-.learning-hero {
-    padding: clamp(80px, 10vw, 140px) var(--pad) clamp(40px, 5vw, 60px);
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(10,132,255,0.16), transparent 55%),
-        var(--bg);
-    text-align: center;
-    border-bottom: 1px solid var(--border);
+/* ═══════════════════ LEARNING CENTER INDEX ═══════════════════ */
+/* Reuses .support-hero for the page hero and .features / .feature-grid
+   for the article grid. Adds a small "Article 0X" eyebrow above the
+   feature card title and a "Read the article →" CTA at the bottom. */
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
-.learning-hero-inner {
-    max-width: 760px;
-    margin: 0 auto;
+.feature-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    color: inherit;
 }
-.learning-hero h1 {
-    font-size: clamp(38px, 5.5vw, 64px);
-    line-height: 1.08;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
+.feature-num {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-hi);
+    margin-bottom: 8px;
 }
-.learning-hero .hero-sub {
-    margin: 0 auto 18px;
-    color: var(--text-dim);
+.feature-cta {
+    margin-top: auto;
+    padding-top: 16px;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 600;
 }
-.learning-meta {
+.feature-link:hover .feature-cta { color: var(--accent-hi); }
+
+/* ═══════════════════ ARTICLE PAGES ═══════════════════ */
+.article-hero .article-back {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+.article-hero .article-back:hover { color: var(--accent); }
+.article-hero h1 {
+    margin-bottom: 18px;
+}
+.article-meta {
     color: var(--text-muted);
     font-size: 14px;
     letter-spacing: 0.02em;
+    margin: 0;
 }
 
-.learning-list {
-    padding: clamp(40px, 6vw, 80px) var(--pad) clamp(60px, 8vw, 120px);
-}
-.learning-list-inner {
-    max-width: 880px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-.learning-card {
-    display: grid;
-    grid-template-columns: 88px 1fr;
-    gap: 24px;
-    padding: clamp(24px, 3vw, 36px);
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    color: var(--text);
-    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-}
-.learning-card:hover {
-    border-color: var(--accent);
-    background: var(--bg-3);
-    transform: translateY(-2px);
-    color: var(--text);
-}
-.learning-num {
-    font-size: 44px;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.04em;
-    line-height: 1;
-}
-.learning-body h2 {
-    font-size: clamp(20px, 2.4vw, 26px);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-    color: var(--text);
-}
-.learning-body p {
-    color: var(--text-dim);
-    font-size: 16px;
-    line-height: 1.55;
-    margin-bottom: 14px;
-}
-.learning-cta {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 15px;
-}
-.learning-card:hover .learning-cta { color: var(--accent-hi); }
-
-@media (max-width: 640px) {
-    .learning-card { grid-template-columns: 1fr; gap: 12px; }
-    .learning-num { font-size: 32px; }
-}
-
-/* ═══════════════════ ARTICLE PAGES ═══════════════════ */
-.article {
-    padding: clamp(60px, 8vw, 100px) var(--pad) clamp(60px, 8vw, 120px);
+.article-section {
+    padding: clamp(48px, 6vw, 80px) var(--pad) clamp(60px, 8vw, 120px);
     background: var(--bg);
 }
 .article-inner {
     max-width: 720px;
     margin: 0 auto;
 }
-.article-back {
-    display: inline-block;
-    margin-bottom: 24px;
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 500;
-}
-.article-back:hover { color: var(--accent); }
-.article-title {
-    font-size: clamp(34px, 5vw, 52px);
-    line-height: 1.12;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 12px 0 14px;
-    color: var(--text);
-}
-.article-meta {
-    color: var(--text-muted);
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    margin-bottom: 36px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-}
 
 .article-body {
     color: var(--text-dim);
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 .article-body h2 {
     color: var(--text);
@@ -1002,6 +941,7 @@ img { display: block; max-width: 100%; height: auto; }
     margin: 48px 0 16px;
     line-height: 1.2;
 }
+.article-body h2:first-child { margin-top: 0; }
 .article-body h3 {
     color: var(--text);
     font-size: clamp(19px, 2vw, 22px);
@@ -1083,9 +1023,7 @@ img { display: block; max-width: 100%; height: auto; }
     text-transform: uppercase;
 }
 .article-body tbody tr:last-child td { border-bottom: none; }
-.article-body td code {
-    white-space: nowrap;
-}
+.article-body td code { white-space: nowrap; }
 
 /* Article pager */
 .article-pager {
@@ -1106,6 +1044,7 @@ img { display: block; max-width: 100%; height: auto; }
     border-radius: var(--radius);
     color: var(--text);
     transition: border-color 0.2s ease, background 0.2s ease;
+    text-decoration: none;
 }
 .pager:hover {
     border-color: var(--accent);

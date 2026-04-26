@@ -219,12 +219,17 @@ PAGE = """<!DOCTYPE html>
     </div>
 </header>
 
-<article class="article">
-    <div class="article-inner">
+<section class="support-hero article-hero">
+    <div class="support-hero-inner">
         <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
-        <span class="eyebrow">ARMORED VAULT LEARNING CENTER</span>
-        <h1 class="article-title">{title}</h1>
+        <span class="eyebrow">LEARNING CENTER &middot; ARTICLE {num}</span>
+        <h1>{title}</h1>
         <p class="article-meta">By Robert Lewis &middot; April 25, 2026</p>
+    </div>
+</section>
+
+<article class="article-section">
+    <div class="article-inner">
         <div class="article-body">
 {body}
         </div>
@@ -282,6 +287,7 @@ def main():
             summary=html.escape(summary),
             body=body,
             nav_block=nav_block(prev_a, next_a),
+            num=num,
         )
         out_path = OUT_DIR / f"{slug}.html"
         out_path.write_text(page, encoding="utf-8")
