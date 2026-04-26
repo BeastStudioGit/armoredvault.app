@@ -214,6 +214,8 @@ PAGE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} — Armored Vault Learning Center</title>
     <meta name="description" content="{summary}">
+    <link rel="icon" type="image/png" href="../assets/app-icon.png">
+    <link rel="apple-touch-icon" href="../assets/app-icon.png">
     <link rel="stylesheet" href="../style.css?v=20260426a">
 </head>
 <body>
@@ -221,7 +223,7 @@ PAGE = """<!DOCTYPE html>
 <header class="nav">
     <div class="nav-inner">
         <a href="../index.html#top" class="nav-brand">
-            <span class="nav-lock">&#128274;</span>
+            <img class="nav-icon" src="../assets/app-icon.png" alt="">
             <span>Armored Vault</span>
         </a>
         <nav class="nav-links">
@@ -259,7 +261,7 @@ PAGE = """<!DOCTYPE html>
 <footer class="footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <span class="nav-lock">&#128274;</span>
+            <img class="nav-icon" src="../assets/app-icon.png" alt="">
             <strong>Armored Vault</strong>
             <p>Encrypted Vault for iPad</p>
         </div>
