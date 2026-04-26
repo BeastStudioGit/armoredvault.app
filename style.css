@@ -95,6 +95,14 @@ img { display: block; max-width: 100%; height: auto; }
     border-radius: 12px;
     margin-bottom: 8px;
 }
+.brand-mark {
+    width: clamp(72px, 10vw, 96px);
+    height: clamp(72px, 10vw, 96px);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto 20px;
+    display: block;
+}
 .nav-links {
     display: flex;
     align-items: center;
