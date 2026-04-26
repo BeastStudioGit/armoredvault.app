@@ -216,7 +216,7 @@ PAGE = """<!DOCTYPE html>
     <meta name="description" content="{summary}">
     <link rel="icon" type="image/png" href="../assets/app-icon.png">
     <link rel="apple-touch-icon" href="../assets/app-icon.png">
-    <link rel="stylesheet" href="../style.css?v=20260426a">
+    <link rel="stylesheet" href="../style.css?v=20260426b">
 </head>
 <body>
 
