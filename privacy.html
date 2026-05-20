@@ -36,14 +36,14 @@
     <div class="support-hero-inner">
         <span class="eyebrow">PRIVACY POLICY</span>
         <h1>Your data stays yours.</h1>
-        <p class="hero-sub">Zero collection. Zero network access. Zero analytics. Everything lives on your iPad and nowhere else.</p>
+        <p class="hero-sub">Zero collection. Zero network access. Zero analytics. Everything lives on your iPad or Mac and nowhere else.</p>
     </div>
 </section>
 
 <!-- ═══════════════════ PRIVACY BODY ═══════════════════ -->
 <section class="legal">
     <div class="legal-inner">
-        <p class="effective">Effective date: April 18, 2026</p>
+        <p class="effective">Effective date: May 20, 2026</p>
 
         <h2>Overview</h2>
         <p>Armored Vault is designed with privacy as its core principle. The app operates entirely offline and does not collect, transmit, or share any user data whatsoever.</p>
@@ -63,13 +63,13 @@
         <p>Armored Vault makes <strong>zero network connections</strong>. The app does not communicate with any server, API, or external service. All encryption, decryption, and file storage happens entirely on your device.</p>
 
         <h2>On-Device Data</h2>
-        <p>All files you import or create within the app are encrypted using AES-256-GCM and stored locally on your iPad. Your passphrase is hashed and stored in the iOS Keychain — it is never transmitted or stored in plain text. No data leaves your device unless you explicitly choose to export it.</p>
+        <p>All files you import or create within the app are encrypted using AES-256-GCM and stored locally on your device. Your passphrase is used to derive an encryption key on your device; the passphrase itself is never stored, transmitted, or recorded in any form. No data leaves your device unless you explicitly choose to export it.</p>
 
         <h2>Camera Access</h2>
         <p>The app requests camera access for two optional features: capturing photos and videos directly into the vault, and the break-in detection feature. All captured images remain on your device, encrypted within the app's secure storage. No images are ever uploaded or transmitted.</p>
 
-        <h2>Face ID &amp; Device Authentication</h2>
-        <p>If you enable Face ID for unlock, authentication is handled entirely by Apple's LocalAuthentication framework on your device. The app also uses Apple's device-owner authentication (Face ID, Touch ID, or device passcode) to gate the Vault Reset Zone, which is the sanctioned clean-slate reset path for forgotten passphrases. No biometric data is accessed or stored by Armored Vault in either case — all evaluation happens within iOS.</p>
+        <h2>Biometric &amp; Device Authentication</h2>
+        <p>If you enable biometric unlock (Face ID or Touch ID), authentication is handled entirely by Apple's LocalAuthentication framework on your device. The app also uses Apple's device-owner authentication (Face ID, Touch ID, device passcode, or Mac account password) to gate Vault Reset, the sanctioned clean-slate reset path for forgotten passphrases. No biometric data is accessed or stored by Armored Vault in either case — all evaluation happens within iOS or macOS.</p>
 
         <h2>Third-Party Services</h2>
         <p>Armored Vault uses no third-party SDKs, analytics services, ad networks, or cloud services of any kind.</p>
@@ -77,11 +77,14 @@
         <h2>Children's Privacy</h2>
         <p>The app does not collect any data from anyone, including children under 13.</p>
 
+        <h2>GDPR, CCPA, and Similar Regulations</h2>
+        <p>Because Armored Vault collects no personal data, there is nothing for us to provide in response to access, portability, deletion, or opt-out requests under the General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), or similar laws. You retain all rights granted by those laws; we simply have no personal data on which to act.</p>
+
         <h2>Changes to This Policy</h2>
         <p>If this privacy policy is updated, the revised version will be posted on this page with an updated effective date.</p>
 
         <h2>Contact</h2>
-        <p>If you have questions about this privacy policy, contact us at <a href="mailto:robert.lewis@me.com?subject=Armored%20Vault%20Privacy">robert.lewis@me.com</a>.</p>
+        <p>If you have questions about this privacy policy, contact us at <a href="mailto:support@beaststudio.dev?subject=Armored%20Vault%20Privacy">support@beaststudio.dev</a>.</p>
     </div>
 </section>
 
@@ -91,7 +94,7 @@
         <div class="footer-brand">
             <img class="nav-icon" src="assets/app-icon.png" alt="">
             <strong>Armored Vault</strong>
-            <p>Encrypted Vault for iPad</p>
+            <p>Encrypted Vault for iPad and Mac</p>
         </div>
         <nav class="footer-links">
             <a href="learning-center.html">Learning Center</a>
