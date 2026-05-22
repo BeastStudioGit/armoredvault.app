@@ -1,7 +1,7 @@
 # End-User License Agreement
 
 **Armored Vault**
-Version 1.0 — May 20, 2026
+Version 1.1 — May 22, 2026
 
 This End-User License Agreement (the "Agreement") is a binding legal agreement between you ("you" or "User") and Beast Studio Dev LLC, a Texas limited liability company ("Beast Studio," "we," "us," "our"), governing your use of the Armored Vault application, including its iPad and macOS versions and any updates, documentation, and related materials (collectively, the "App").
 
@@ -53,6 +53,10 @@ You acknowledge and agree to the following essential properties of the App:
 **(d) Your responsibility.** You are solely responsible for: (i) recording and protecting your passphrase; (ii) creating and maintaining backups of your data using the export and backup tools provided by the App; and (iii) the security of the devices on which the App is installed.
 
 **(e) No guarantee of absolute security.** While the App uses widely-accepted cryptographic primitives (AES-256-GCM, PBKDF2-HMAC-SHA512, and related constructions provided by Apple's CryptoKit framework), no software is immune to all attack vectors. The App is one layer of defense, not a complete security solution.
+
+**(f) Operating system and third-party software.** The App operates within the operating system installed on your device (macOS or iPadOS) and alongside any other software you have installed or chosen to enable. The App does not, and cannot, defend against: (i) compromise of the operating system itself, including malicious software that has obtained system-level privileges; (ii) third-party software you have installed and to which you have granted system permissions, including but not limited to Accessibility, Screen Recording, Full Disk Access, clipboard manager, or assistive-software permissions; (iii) features of the operating system itself, including features that Apple may add in future operating-system updates, that observe or interact with rendered content, the clipboard, accessibility APIs, screenshots, or system services. The security of your operating system and the software you choose to install on your device is your responsibility, not Beast Studio's. The App's responsibility is to behave correctly itself: it does not transmit, collect, or share your data, and it does not perform any action that you did not initiate.
+
+**(g) User-initiated actions.** When you initiate an action that involves your operating system or another application — for example, clicking a hyperlink within a document and opening it in your default web browser, sharing a file to another app, copying text and pasting it into another application, or printing a document — that action is your choice and is governed by the behavior of the operating system and the recipient application, not by the App. The App does not block, monitor, or modify such user-initiated actions.
 
 ## 4. Updates
 

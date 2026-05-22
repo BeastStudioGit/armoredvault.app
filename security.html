@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armored Vault — Security Model</title>
+    <meta name="description" content="Armored Vault's security model in plain English. What the app does, what it doesn't do, and where the responsibility line sits.">
+    <link rel="icon" type="image/png" href="assets/app-icon.png">
+    <link rel="apple-touch-icon" href="assets/app-icon.png">
+    <link rel="stylesheet" href="style.css?v=20260522">
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="nav">
+    <div class="nav-inner">
+        <a href="index.html#top" class="nav-brand">
+            <img class="nav-icon" src="assets/app-icon.png" alt="">
+            <span>Armored Vault</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#security">Security</a>
+            <a href="learning-center.html">Learning Center</a>
+            <a href="support.html">Support</a>
+            <a href="index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="support-hero">
+    <div class="support-hero-inner">
+        <span class="eyebrow">SECURITY MODEL</span>
+        <h1>The honest version.</h1>
+        <p class="hero-sub">What Armored Vault does. What it doesn't do. And where the responsibility line sits between us, you, and your operating system.</p>
+    </div>
+</section>
+
+<!-- ═══════════════════ BODY ═══════════════════ -->
+<section class="legal">
+    <div class="legal-inner">
+        <p class="effective">Last updated: May 22, 2026</p>
+
+        <h2>The short version</h2>
+        <p>Armored Vault's job is to behave correctly itself. We don't send your data anywhere, we don't gather analytics, we don't phone home, and we don't perform any action you didn't initiate. What you do with your content — clicking a link, sharing to another app, copying and pasting — is your choice. We don't stand in front of you.</p>
+        <p>What we cannot do is defend against your operating system, against software you've installed and given elevated permissions to, or against future macOS / iPadOS features Apple may add. That's not a bug; it's a scope. We tell you about it here so you can make informed decisions.</p>
+
+        <h2>What Armored Vault does</h2>
+        <ul>
+            <li><strong>Encrypts at rest.</strong> Your vault is AES-256-GCM encrypted on disk. The key is derived from your passphrase using PBKDF2-HMAC-SHA512. We use Apple's CryptoKit primitives — no custom crypto.</li>
+            <li><strong>Operates entirely offline.</strong> Armored Vault makes zero network connections. No servers, no APIs, no cloud sync.</li>
+            <li><strong>Doesn't gather analytics.</strong> No telemetry, no crash reporting service, no usage tracking. We don't even know how many times you opened the app.</li>
+            <li><strong>Doesn't log content.</strong> System logs from Armored Vault contain only error codes and counts. No filenames, no body text, no tag names, no paths to your files.</li>
+            <li><strong>Doesn't persist window state.</strong> Closing and reopening Armored Vault never replays where you were — the app starts at the lock screen every time.</li>
+            <li><strong>Blocks Universal Clipboard on copy.</strong> When you copy text from a vault document, the entry is marked host-only. macOS will not silently extend it to your iPhone, iPad, or other Macs. Local paste on the same Mac still works because that's a deliberate action you took.</li>
+            <li><strong>Authenticates with Touch ID / Face ID + your passphrase.</strong> Biometric unlock is convenience after you've unlocked once with the passphrase. Biometric material never leaves Apple's LocalAuthentication framework.</li>
+            <li><strong>Supports a sanctioned reset path.</strong> If you forget your passphrase, Vault Reset wipes the vault and starts over. That's the only recovery. There is no backdoor, no key escrow, no recovery service.</li>
+        </ul>
+
+        <h2>What Armored Vault doesn't do (intentionally)</h2>
+        <ul>
+            <li><strong>No cloud sync, no backup service.</strong> If you want a backup of your encrypted vault, the app's Full Armored Vault Backup feature copies the encrypted files to a folder you pick. You move them where you want.</li>
+            <li><strong>No remote recovery.</strong> We can't reset your passphrase. Apple can't reset your passphrase. Law enforcement can't compel us to reset your passphrase, because we have nothing to give them.</li>
+            <li><strong>No auto-updates outside the App Store.</strong> Updates ship through Apple's normal App Store process. We never push code to your device through any other channel.</li>
+            <li><strong>No push notifications.</strong> Armored Vault doesn't request notification permission and doesn't have a server to send them from.</li>
+        </ul>
+
+        <h2>What Armored Vault cannot defend against</h2>
+        <p>This is the honest part. The following are not within Armored Vault's control:</p>
+        <ul>
+            <li><strong>Your operating system itself.</strong> If macOS or iPadOS is compromised — by malware running with system privileges, by an attacker with physical access who has bypassed FileVault, by a future operating-system feature that observes screen content — Armored Vault is one app running inside a compromised environment. The app cannot rise above the platform it runs on.</li>
+            <li><strong>Software you've installed and granted permissions to.</strong> Apps like screen recorders (Rewind.ai, Loom), accessibility tools (BetterTouchTool, Bartender, TextExpander), clipboard managers (Paste, Maccy, Raycast), and AI assistants can see what you see if you've granted them the corresponding system permissions. That's how those apps work — they read your screen or your input by design. Armored Vault cannot revoke permissions you granted them.</li>
+            <li><strong>Actions you choose to take that hand content out.</strong> Clicking a link in a vault document opens your default browser, which contacts the link's server. Sharing a file via the macOS Share Sheet hands the file to whatever app you picked. Copying text and pasting it into Mail sends the text to Mail. These are your decisions and govern themselves once you've made them.</li>
+            <li><strong>Hardware capture.</strong> An HDMI capture card, an external camera pointed at your screen, or a similar hardware device sees what your monitor displays. There is no software defense against this.</li>
+            <li><strong>Future Apple operating-system features.</strong> Apple is adding features every release that observe more of what's on screen — Apple Intelligence Writing Tools, system-wide Siri awareness, Live Text on rendered images. We will track these and document them, but we cannot promise to keep up if Apple changes a behavior we can't opt out of.</li>
+        </ul>
+
+        <h2>Where your responsibility starts</h2>
+        <p>Armored Vault is one layer. Your operating system is another. To get the full benefit of Armored Vault's encryption-at-rest, the following are your responsibilities:</p>
+        <ul>
+            <li><strong>Keep your OS and apps up to date.</strong> Apple security patches matter.</li>
+            <li><strong>Enable FileVault on Mac.</strong> Without FileVault, macOS swap and the hibernation file (on MacBooks) are not encrypted at rest. Armored Vault holds decrypted content in memory while you're viewing it; if memory gets paged to an unencrypted disk, the contents are recoverable. FileVault solves this.</li>
+            <li><strong>Don't grant Accessibility / Screen Recording / Full Disk Access to apps you don't trust.</strong> Those permissions let an app see almost anything on your device.</li>
+            <li><strong>Don't install Armored Vault on a device that isn't yours.</strong> A shared device, a managed corporate device, a kid's iPad — the threat model assumes the device is under your control.</li>
+            <li><strong>Record your passphrase somewhere safe.</strong> Armored Vault cannot recover it. Write it down. Put it in a fireproof safe. Tell your lawyer.</li>
+        </ul>
+
+        <h2>Opt-in stronger defenses</h2>
+        <p>If you want a more paranoid posture, Armored Vault includes several optional protections in Settings:</p>
+        <ul>
+            <li><strong>Block Screen Capture</strong> — when on, screenshots, Screen Recording apps, AirPlay mirroring, and Mission Control thumbnails capture a black rectangle for the Armored Vault window while the vault is unlocked. Off by default because most people want to be able to screenshot their own documents.</li>
+            <li><strong>Hide Contents When Inactive</strong> — masks the vault with a black overlay whenever Armored Vault loses focus. On by default.</li>
+            <li><strong>Intrusion Detection</strong> — silently captures a photo of whoever attempts a wrong unlock. Off by default; requires camera permission. (macOS webcam green LED cannot be suppressed — this is hardware.)</li>
+            <li><strong>Decoy Launch Codes</strong> — a separate set of credentials that unlocks a decoy vault with decoy content. For situations where you might be compelled to unlock.</li>
+            <li><strong>Custom Lock Timeout</strong> — auto-lock after a period of inactivity.</li>
+        </ul>
+
+        <h2>The principle</h2>
+        <p>Armored Vault is built by an indie developer who actually cares about getting this right. The principle is simple: <strong>we don't betray you, and we tell you the truth about what we can and cannot do.</strong> Anyone claiming their app can prevent all conceivable OS-level attacks is selling you something. We're not.</p>
+        <p>If you find behavior in Armored Vault that contradicts this page — content leaving the device, content being logged, the app doing something you didn't ask it to — please tell us at <a href="mailto:support@beaststudio.dev?subject=Armored%20Vault%20Security%20Concern">support@beaststudio.dev</a>. We treat that mail as priority.</p>
+
+        <h2>Related</h2>
+        <ul>
+            <li><a href="privacy.html">Privacy Policy</a> — what we collect (nothing) and what we share (nothing).</li>
+            <li><a href="learning-center.html">Learning Center</a> — how to choose a strong passphrase, how the encryption works, common questions.</li>
+            <li><a href="support.html">Support</a> — get in touch.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img class="nav-icon" src="assets/app-icon.png" alt="">
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad and Mac</p>
+        </div>
+        <nav class="footer-links">
+            <a href="learning-center.html">Learning Center</a>
+            <a href="support.html">Support</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="security.html">Security Model</a>
+            <a href="index.html#features">Features</a>
+            <a href="support.html#faq">FAQ</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>
