@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armored Vault — Encrypted Vault for iPad</title>
-    <meta name="description" content="Armored Vault turns your iPad into a hardened vault for videos, photos, documents, and encrypted notes. AES-256 encryption, Diceware passphrase generator, instant kill switch, zero cloud.">
+    <title>Armored Vault — Encrypted Vault for iPad and Mac</title>
+    <meta name="description" content="Armored Vault turns your iPad or Mac into a hardened vault for videos, photos, documents, audio, and encrypted markdown notes. AES-256 encryption, Diceware passphrase generator, instant kill switch, zero cloud.">
     <link rel="icon" type="image/png" href="assets/app-icon.png">
     <link rel="apple-touch-icon" href="assets/app-icon.png">
     <link rel="stylesheet" href="style.css?v=20260426e">
@@ -35,15 +35,15 @@
 <section class="hero" id="top">
     <div class="hero-inner">
         <div class="hero-copy">
-            <span class="eyebrow">ENCRYPTED VAULT FOR iPAD</span>
+            <span class="eyebrow">ENCRYPTED VAULT FOR iPAD AND MAC</span>
             <h1>Your files.<br>Your vault.<br><span class="accent">Zero cloud.</span></h1>
-            <p class="hero-sub">AES-256 encryption for videos, photos, documents &amp; secure notes. Built-in Diceware passphrase generator. Instant kill switch. No accounts, no servers, no network calls — ever.</p>
+            <p class="hero-sub">AES-256 encryption for videos, photos, documents, audio &amp; encrypted notes. Built-in Diceware passphrase generator. Instant kill switch. No accounts, no servers, no network calls — ever.</p>
             <div class="hero-ctas">
                 <a href="#download" class="btn btn-primary">Download on the App Store</a>
                 <a href="#features" class="btn btn-ghost">See Features</a>
             </div>
             <ul class="hero-badges">
-                <li>&#10003; iPadOS 18+</li>
+                <li>&#10003; macOS 14+ &middot; iPadOS 18+</li>
                 <li>&#10003; One-time purchase</li>
                 <li>&#10003; No subscriptions</li>
                 <li>&#10003; No analytics</li>
@@ -62,7 +62,7 @@
     <div class="section-head">
         <img src="assets/app-icon.png" alt="Armored Vault" class="brand-mark">
         <h2>A look inside the vault</h2>
-        <p>Every screen. Dark theme. Designed specifically for iPad.</p>
+        <p>Every screen. Dark theme. Native on Mac and iPad.</p>
     </div>
     <div class="marquee">
         <div class="marquee-track">
@@ -185,13 +185,19 @@
         <article class="feature">
             <div class="feature-icon blue">&#127922;</div>
             <h3>Diceware Passphrase Generator</h3>
-            <p>True random dice roll against the EFF Large Wordlist. A 10-word passphrase is ~129 bits — an estimated 25.6 quintillion years to crack at a trillion guesses per second.</p>
+            <p>True random dice roll against the EFF Large Wordlist with 7, 8, 10, or 12 word options. A 10-word passphrase is ~129 bits — an estimated 25.6 quintillion years to crack at a trillion guesses per second.</p>
         </article>
 
         <article class="feature">
             <div class="feature-icon green">&#9989;</div>
             <h3>Live Strength Meter</h3>
-            <p>Custom passphrases get a zxcvbn-backed strength bar with bit-level readout and honest crack-time estimates. Test passphrases before committing to one.</p>
+            <p>Custom passphrases get a zxcvbn-backed strength bar with bit-level readout and honest crack-time estimates. The Save gate requires at least Strong (~80 bits) — dictionary-aware and Diceware-aware, so you can't game it with padding or leetspeak.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon green">&#128274;</div>
+            <h3>Biometric Unlock</h3>
+            <p>Touch ID on Mac (Apple Silicon or T2-equipped Intel) and Face ID on iPad. Convenience after first passphrase entry; the master key copy is sealed in the Secure Enclave and revoked on any biometric or account change.</p>
         </article>
 
         <article class="feature">
@@ -221,7 +227,25 @@
         <article class="feature">
             <div class="feature-icon yellow">&#128221;</div>
             <h3>Secure Notes</h3>
-            <p>Encrypted rich-text notes for passwords, account numbers, legal text, or anything sensitive — same AES-256 encryption as your files.</p>
+            <p>Encrypted markdown notes with a full toolbar (bold, italic, headings, lists, checkbox, blockquote, code, link) and an Edit/Preview toggle. Seven starter templates: Password, Credit Card, Bank, Wi-Fi, License, Recovery Codes, ID.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon blue">&#127991;</div>
+            <h3>Tags &amp; Favorites</h3>
+            <p>Apply one or more encrypted tags to any item, or heart it as a favorite. Filter the library by favorites, or search by tag name. Both work across every category.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon blue">&#128269;</div>
+            <h3>Library Search</h3>
+            <p>Token-based search across file names, tags, item dates, and the bodies of notes and indexed documents. AND-matched, so "vacation 2024" narrows by both terms.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon orange">&#127911;</div>
+            <h3>Audio Library</h3>
+            <p>Bulk-select audio into a playlist with prev/next, volume, loop, and per-track lazy decrypt. M4A, MP3, WAV, AIFF, FLAC, and more.</p>
         </article>
 
         <article class="feature">
@@ -239,13 +263,25 @@
         <article class="feature">
             <div class="feature-icon mint">&#128444;</div>
             <h3>Photo Slideshow</h3>
-            <p>Auto-advance with loop. Swipe or hardware arrow keys. Spacebar pauses. Built for iPad from the start.</p>
+            <p>Auto-advance with loop. Swipe (iPad) or hardware arrow keys. Spacebar pauses. On Mac, the slideshow interval is user-configurable (2 to 30 seconds).</p>
         </article>
 
         <article class="feature">
             <div class="feature-icon cyan">&#128190;</div>
-            <h3>Three Export Paths</h3>
-            <p>Encrypted ZIP (AES-256 password-protected), plain ZIP, or flat decrypted files straight to a USB-C external drive — no staging on the iPad.</p>
+            <h3>Four Export Paths</h3>
+            <p>Plain ZIP for trusted destinations; Password-Protected ZIP (AES-256, with an optional Hide file names option that seals everything inside a single ArmoredVault.zip); Full Decrypted Export to an external drive in original formats; Full Armored Vault Backup for encrypted end-to-end migration.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon teal">&#127960;&#65039;</div>
+            <h3>Full Armored Vault Backup</h3>
+            <p>A complete encrypted snapshot of your vault to an external drive or any Files / Finder destination. Pair with Restore from Backup on a new device to migrate the entire vault — encrypted end-to-end, never decrypted in transit.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon mint">&#128202;</div>
+            <h3>Vault Statistics</h3>
+            <p>Total item counts per category, total encrypted size, oldest and newest items, and your largest file. Settings &rarr; Vault Statistics on Mac.</p>
         </article>
     </div>
 </section>
@@ -298,7 +334,7 @@
             <ul class="diff-list cons">
                 <li>Subscription-based at $3–10/month</li>
                 <li>Cloud-dependent (defeating the point)</li>
-                <li>Phone-first design crammed onto iPad</li>
+                <li>Phone-first design scaled to larger screens</li>
                 <li>"Hidden folder" with no real encryption</li>
                 <li>Import-only — no way to get data out</li>
                 <li>No passphrase generator</li>
@@ -308,11 +344,11 @@
         <div class="diff-col pros-col">
             <h4>Armored Vault</h4>
             <ul class="diff-list pros">
-                <li>One-time purchase, no subscription</li>
+                <li>One-time purchase, no subscription (Family Sharing on)</li>
                 <li>Zero cloud, zero network access</li>
-                <li>iPad-native — full hardware keyboard support</li>
-                <li>True AES-256-GCM on every file</li>
-                <li>Three export paths including direct-to-drive</li>
+                <li>Native on both Mac and iPad — full keyboard support</li>
+                <li>True AES-256-GCM on every file, name, and date</li>
+                <li>Four export paths including encrypted backup-and-restore</li>
                 <li>Built-in Diceware passphrase generator</li>
                 <li>Kill switch, decoy vault, vault reset zone</li>
             </ul>
@@ -344,7 +380,7 @@
     <div class="faq-list">
         <details>
             <summary>How do I create a strong passphrase?</summary>
-            <p>Use the built-in Generate Passphrase tool in Settings. It rolls true random dice against the EFF Large Wordlist to build a Diceware passphrase of 8, 10, or 12 words. A 10-word passphrase is ~129 bits — roughly 25.6 quintillion years to crack at a trillion guesses per second. You can also enter your own passphrase; a live strength meter rates it on the spot.</p>
+            <p>Use the built-in Generate Passphrase tool in Settings. It rolls true random dice against the EFF Large Wordlist to build a Diceware passphrase of 7, 8, 10, or 12 words. A 10-word passphrase is ~129 bits — roughly 25.6 quintillion years to crack at a trillion guesses per second. You can also enter your own passphrase; a live strength meter rates it on the spot and the Save gate requires at least Strong (~80 bits).</p>
         </details>
 
         <details>
@@ -369,7 +405,7 @@
 
         <details>
             <summary>Can I back up my vault?</summary>
-            <p>Yes — three ways. Export to Password-Protected Zip creates an AES-256 ZIP. Export Decrypted to ZIP creates a standard ZIP for sharing. Full Backup writes flat decrypted files straight to a USB-C external drive with no staging on your iPad.</p>
+            <p>Yes — four ways. <strong>Full Armored Vault Backup</strong> writes an encrypted snapshot of the entire vault to an external drive or any Files / Finder destination — pair with Restore from Backup on a new device to migrate, encrypted end-to-end. <strong>Full Decrypted Export</strong> writes every file decrypted to a drive in original formats. <strong>Export to Password-Protected Zip</strong> creates an AES-256 ZIP that opens in 7-Zip / Keka / WinZip; an optional Hide file names option seals everything inside a single ArmoredVault.zip so the outer archive's index reveals nothing. <strong>Export to ZIP</strong> is a plain unencrypted archive for trusted destinations.</p>
         </details>
 
         <details>
@@ -383,8 +419,8 @@
         </details>
 
         <details>
-            <summary>What iPad models are supported?</summary>
-            <p>Any iPad running iPadOS 18 or later. Universal Purchase is disabled — this is an iPad-only app, not a scaled phone app.</p>
+            <summary>What devices are supported?</summary>
+            <p>The iPad app runs on any iPad with iPadOS 18 or later. The Mac app runs on any Mac with macOS 14 or later. Mac and iPad are sold as separate App Store listings (not Universal Purchase) so each can be priced for its market; Family Sharing is enabled on both. There is no iPhone version — Armored Vault is desktop-and-tablet territory by design.</p>
         </details>
     </div>
 </section>
@@ -419,7 +455,7 @@
         <div class="footer-brand">
             <img class="nav-icon" src="assets/app-icon.png" alt="">
             <strong>Armored Vault</strong>
-            <p>Encrypted Vault for iPad</p>
+            <p>Encrypted Vault for iPad and Mac</p>
         </div>
         <nav class="footer-links">
             <a href="learning-center.html">Learning Center</a>

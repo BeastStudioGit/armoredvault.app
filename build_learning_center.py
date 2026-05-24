@@ -9,7 +9,7 @@ import re
 import html
 from pathlib import Path
 
-SRC_DIR = Path("/Volumes/Mac Studio Swap/Armored Vault/ArmoredVault/LearningCenter")
+SRC_DIR = Path("/Volumes/Mac Studio Swap/armoredvault.app/learning-source")
 OUT_DIR = Path("/Volumes/Mac Studio Swap/armoredvault.app/learning")
 
 ARTICLES = [

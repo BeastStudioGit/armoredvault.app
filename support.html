@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armored Vault — Support</title>
-    <meta name="description" content="Support for Armored Vault — the encrypted iPad vault. Email support, FAQ, and answers to common questions about passphrases, backups, and encryption.">
+    <meta name="description" content="Support for Armored Vault — the encrypted vault for iPad and Mac. Email support, FAQ, and answers to common questions about passphrases, backups, and encryption.">
     <link rel="icon" type="image/png" href="assets/app-icon.png">
     <link rel="apple-touch-icon" href="assets/app-icon.png">
     <link rel="stylesheet" href="style.css?v=20260426e">
@@ -47,7 +47,7 @@
             <div class="contact-icon">&#9993;&#65039;</div>
             <h3>Email Support</h3>
             <p>
-                <a href="mailto:robert.lewis@me.com?subject=Armored%20Vault%20Support">robert.lewis@me.com</a>
+                <a href="mailto:support@beaststudio.dev?subject=Armored%20Vault%20Support">support@beaststudio.dev</a>
             </p>
             <p class="contact-meta">Subject line: <strong>Armored Vault Support</strong></p>
         </div>
@@ -63,7 +63,7 @@
     <div class="faq-list">
         <details open>
             <summary>How do I create a strong passphrase?</summary>
-            <p>Use the built-in <strong>Generate Passphrase</strong> tool in Settings. It rolls true random dice against the EFF Large Wordlist to build a Diceware passphrase of 8, 10, or 12 words. A 10-word Diceware passphrase is ~129 bits of entropy — roughly 25.6 quintillion years to crack at one trillion guesses per second. You can also enter your own passphrase; a live strength meter shows the estimated crack time as you type.</p>
+            <p>Use the built-in <strong>Generate Passphrase</strong> tool in Settings. It rolls true random dice against the EFF Large Wordlist to build a Diceware passphrase of 7, 8, 10, or 12 words. A 10-word Diceware passphrase is ~129 bits of entropy — roughly 25.6 quintillion years to crack at one trillion guesses per second. You can also enter your own passphrase; a live strength meter rates it on the spot and the Save gate requires at least Strong (~80 bits).</p>
         </details>
 
         <details>
@@ -78,12 +78,12 @@
 
         <details>
             <summary>What encryption does the app use?</summary>
-            <p>AES-256-GCM — the same standard used by governments and financial institutions. Files are encrypted the moment they enter the vault, using a key derived from your passphrase via Argon2id. Decryption happens in a streaming chunked pipeline so large videos play back instantly without a pre-decrypt wait.</p>
+            <p>AES-256-GCM — the same authenticated-encryption standard used by governments and financial institutions. Files are encrypted the moment they enter the vault, using a master key wrapped by a passphrase-derived key (PBKDF2-HMAC-SHA512, 600,000 iterations, per-vault salt). Decryption happens in a streaming chunked pipeline (4 MB segments) so large videos play back instantly without a pre-decrypt wait.</p>
         </details>
 
         <details>
             <summary>Can I back up my vault?</summary>
-            <p>Yes. Use <strong>Full Backup</strong> in Settings to export your entire vault to a USB-C external drive as flat decrypted files — no staging, straight to the drive. You can also use <strong>Export to Password-Protected Zip</strong> for an AES-256 password-protected ZIP that opens in 7-Zip / WinZip on any computer.</p>
+            <p>Yes — four export paths. <strong>Full Armored Vault Backup</strong> writes an encrypted snapshot of the entire vault to an external drive or any Files / Finder destination — pair with Restore from Backup on a new device to migrate, encrypted end-to-end. <strong>Full Decrypted Export</strong> writes every file decrypted to a drive in original formats. <strong>Export to Password-Protected Zip</strong> creates an AES-256 ZIP that opens in 7-Zip / Keka / WinZip; an optional Hide file names option seals everything inside a single ArmoredVault.zip so the outer archive's index reveals nothing. <strong>Export to ZIP</strong> is a plain unencrypted archive for trusted destinations.</p>
         </details>
 
         <details>
@@ -92,13 +92,13 @@
         </details>
 
         <details>
-            <summary>What iPad models are supported?</summary>
-            <p>Any iPad running iPadOS 18 or later. Universal Purchase is disabled — this is an iPad-only app, not a scaled phone app.</p>
+            <summary>What devices are supported?</summary>
+            <p>The iPad app runs on any iPad with iPadOS 18 or later. The Mac app runs on any Mac with macOS 14 or later. Mac and iPad are sold as separate App Store listings (not Universal Purchase) so each can be priced for its market; Family Sharing is enabled on both. There is no iPhone version — Armored Vault is desktop-and-tablet territory by design.</p>
         </details>
 
         <details>
             <summary>How do I report a bug or request a feature?</summary>
-            <p>Email <a href="mailto:robert.lewis@me.com?subject=Armored%20Vault%20Support">robert.lewis@me.com</a> with "Armored Vault Support" in the subject line. Please include your iPad model, iPadOS version, and a description of what you saw versus what you expected.</p>
+            <p>Email <a href="mailto:support@beaststudio.dev?subject=Armored%20Vault%20Support">support@beaststudio.dev</a> with "Armored Vault Support" in the subject line. Please include your device (Mac model + macOS version, or iPad model + iPadOS version), the Armored Vault version (Settings &rarr; About), and a description of what you saw versus what you expected.</p>
         </details>
     </div>
 
@@ -113,7 +113,7 @@
         <div class="footer-brand">
             <img class="nav-icon" src="assets/app-icon.png" alt="">
             <strong>Armored Vault</strong>
-            <p>Encrypted Vault for iPad</p>
+            <p>Encrypted Vault for iPad and Mac</p>
         </div>
         <nav class="footer-links">
             <a href="learning-center.html">Learning Center</a>
