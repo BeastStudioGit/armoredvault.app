@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armored Vault — Encrypted Vault for iPad and Mac</title>
-    <meta name="description" content="Armored Vault turns your iPad or Mac into a hardened vault for videos, photos, documents, audio, and encrypted markdown notes. AES-256 encryption, Diceware passphrase generator, instant kill switch, zero cloud.">
+    <meta name="description" content="Armored Vault turns your iPad or Mac into a hardened vault for videos, photos, documents, audio, and encrypted markdown notes. AES-256 encryption, Diceware passphrase generator, instant kill switch, and optional ciphertext-only iCloud sync.">
     <link rel="icon" type="image/png" href="assets/app-icon.png">
     <link rel="apple-touch-icon" href="assets/app-icon.png">
     <link rel="stylesheet" href="style.css?v=20260426e">
@@ -36,8 +36,8 @@
     <div class="hero-inner">
         <div class="hero-copy">
             <span class="eyebrow">ENCRYPTED VAULT FOR iPAD AND MAC</span>
-            <h1>Your files.<br>Your vault.<br><span class="accent">Zero cloud.</span></h1>
-            <p class="hero-sub">AES-256 encryption for videos, photos, documents, audio &amp; encrypted notes. Built-in Diceware passphrase generator. Instant kill switch. No accounts, no servers, no network calls — ever.</p>
+            <h1>Your files.<br>Your vault.<br><span class="accent">No tracking.</span></h1>
+            <p class="hero-sub">AES-256 encryption for videos, photos, documents, audio &amp; encrypted notes. Built-in Diceware passphrase generator. Instant kill switch. No accounts, no servers, no tracking — and optional ciphertext-only iCloud sync when you want it.</p>
             <div class="hero-ctas">
                 <a href="#download" class="btn btn-primary">Download on the App Store</a>
                 <a href="#features" class="btn btn-ghost">See Features</a>
@@ -172,7 +172,7 @@
 <section class="features" id="features">
     <div class="section-head">
         <h2>Everything you need. Nothing you don't.</h2>
-        <p>Every feature is local-first. No cloud. No telemetry. No accounts.</p>
+        <p>Every feature is local-first. No telemetry, no accounts, no server — and optional, ciphertext-only iCloud sync when you want your vault on more than one device.</p>
     </div>
 
     <div class="feature-grid">
@@ -198,6 +198,12 @@
             <div class="feature-icon green">&#128274;</div>
             <h3>Biometric Unlock</h3>
             <p>Touch ID on Mac (Apple Silicon or T2-equipped Intel) and Face ID on iPad. Convenience after first passphrase entry; the master key copy is sealed in the Secure Enclave and revoked on any biometric or account change.</p>
+        </article>
+
+        <article class="feature">
+            <div class="feature-icon cyan">&#9729;&#65039;</div>
+            <h3>Ciphertext-Only iCloud Sync</h3>
+            <p>Sync one vault across your Mac and iPad through your own private iCloud — optional, off by default. Only encrypted blobs and an encrypted index ever leave your device; Apple never sees your files, names, or key. One device leads (the Source); the rest are read-only Mirrors, so nothing is ever lost to a merge. Still no account, no server — your devices, your iCloud.</p>
         </article>
 
         <article class="feature">
@@ -299,8 +305,8 @@
             <p>A unique AES-256 key is generated for every file. The master key is derived from your passphrase and stored in the iOS Keychain, protected by the device's Secure Enclave.</p>
         </div>
         <div class="sec-card">
-            <h4>Zero network access</h4>
-            <p>The app makes no outbound connections of any kind. No analytics. No telemetry. No cloud sync. No accounts. Nothing leaves your device unless you explicitly export it.</p>
+            <h4>No tracking, no accounts</h4>
+            <p>No analytics, no telemetry, no third-party SDKs, no account system, and no server I run. The only network connection the app ever makes is the optional iCloud sync you enable yourself — and even then, only ciphertext leaves your device. Nothing else leaves unless you explicitly export it.</p>
         </div>
         <div class="sec-card">
             <h4>Chunked streaming decryption</h4>
@@ -316,7 +322,7 @@
         </div>
         <div class="sec-card">
             <h4>Backup exclusion</h4>
-            <p>Encrypted files are excluded from iCloud and iTunes backups. Keys are device-bound — restoring a backup to a new device will not recover the vault.</p>
+            <p>Your vault is excluded from automatic iCloud and iTunes/Finder device backups — it's never swept up in a routine device backup. Moving a vault to another device is always deliberate: encrypted Backup-and-Restore, or the optional ciphertext-only iCloud sync.</p>
         </div>
     </div>
 </section>
@@ -333,7 +339,7 @@
             <h4>Most vault apps</h4>
             <ul class="diff-list cons">
                 <li>Subscription-based at $3–10/month</li>
-                <li>Cloud-dependent (defeating the point)</li>
+                <li>Cloud-required, with keys held server-side (defeating the point)</li>
                 <li>Phone-first design scaled to larger screens</li>
                 <li>"Hidden folder" with no real encryption</li>
                 <li>Import-only — no way to get data out</li>
@@ -345,7 +351,7 @@
             <h4>Armored Vault</h4>
             <ul class="diff-list pros">
                 <li>One-time purchase, no subscription (Family Sharing on)</li>
-                <li>Zero cloud, zero network access</li>
+                <li>Local-first; optional sync is ciphertext-only, no servers, no accounts</li>
                 <li>Native on both Mac and iPad — full keyboard support</li>
                 <li>True AES-256-GCM on every file, name, and date</li>
                 <li>Four export paths including encrypted backup-and-restore</li>
@@ -390,12 +396,17 @@
 
         <details>
             <summary>Does the app send my data anywhere?</summary>
-            <p>No. Armored Vault makes zero network connections of any kind. No analytics, no telemetry, no cloud, no accounts. Nothing leaves your device unless you explicitly export it.</p>
+            <p>No tracking of any kind — no analytics, no telemetry, no accounts, and no server I run. The one exception is optional iCloud sync, which you turn on yourself: it moves only ciphertext through your own private iCloud, and Apple still can't read it. Nothing else leaves your device unless you explicitly export it.</p>
         </details>
 
         <details>
-            <summary>If there's no cloud, why can I import from iCloud?</summary>
-            <p>Armored Vault uses iOS's native Files picker for imports, so it can pull from any source iOS exposes — On My iPad, iCloud Drive, Dropbox, Google Drive, or anything else you've connected. The import is strictly one-way: files are copied in, encrypted on arrival, and from that moment live only on this device. The app itself still makes zero network calls and has no account, no sync, and no link back to iCloud or any other provider. iCloud is a source you pull from, not a cloud the app lives in.</p>
+            <summary>Why can I import from iCloud?</summary>
+            <p>Armored Vault uses iOS's native Files picker for imports, so it can pull from any source iOS exposes — On My iPad, iCloud Drive, Dropbox, Google Drive, or anything else you've connected. The import is strictly one-way: files are copied in, encrypted on arrival, and from that moment live only on this device. This is separate from the optional iCloud sync feature — importing needs no account and no setup, and even with sync turned on, the only thing that ever moves through iCloud is ciphertext.</p>
+        </details>
+
+        <details>
+            <summary>Is iCloud Sync private?</summary>
+            <p>Yes. iCloud Sync is optional and off until you enable it. When it's on, only ciphertext leaves your device — encrypted file blobs and an encrypted index — through <em>your own</em> private iCloud. Apple never sees your file names, contents, or key, and there's still no account and no server of mine in between. One device is the Source and the rest are read-only Mirrors, so your devices can't drift apart or lose a change to a merge. Full detail in the Learning Center: <a href="learning/06-how-icloud-sync-works.html">How iCloud Sync Works</a>.</p>
         </details>
 
         <details>
@@ -415,7 +426,7 @@
 
         <details>
             <summary>Does the app work without internet?</summary>
-            <p>Yes — entirely. The app has no online dependencies. It also has no network permissions.</p>
+            <p>Yes — completely. With sync turned off, Armored Vault has no online dependencies and never touches the network. Optional iCloud sync is the one feature that uses a connection, and it stays off until you enable it — leave it off and the app runs entirely offline, exactly as it always has.</p>
         </details>
 
         <details>
