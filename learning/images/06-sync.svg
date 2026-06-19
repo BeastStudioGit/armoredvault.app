@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="An encrypted vault syncing between a Mac and an iPad through iCloud, carrying only ciphertext">
+  <defs>
+    <linearGradient id="sync-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1530"/>
+      <stop offset="1" stop-color="#050a18"/>
+    </linearGradient>
+    <radialGradient id="sync-glow" cx="0.5" cy="0.3" r="0.55">
+      <stop offset="0" stop-color="#0a84ff" stop-opacity="0.40"/>
+      <stop offset="1" stop-color="#0a84ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="sync-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0a84ff" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <marker id="sync-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0a84ff"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#sync-bg)"/>
+  <rect width="1200" height="600" fill="url(#sync-grid)"/>
+  <rect width="1200" height="600" fill="url(#sync-glow)"/>
+
+  <!-- iCloud node (center) -->
+  <g transform="translate(600 152)">
+    <ellipse cx="0" cy="0" rx="120" ry="80" fill="#0a1a3a" stroke="#3498ff" stroke-width="2.5" stroke-opacity="0.9"/>
+    <g stroke="#3498ff" stroke-width="3" fill="none">
+      <rect x="-27" y="-6" width="54" height="42" rx="6" fill="#0a84ff" fill-opacity="0.16"/>
+      <path d="M-15 -6 V-20 a15 15 0 0 1 30 0 V-6"/>
+      <circle cx="0" cy="13" r="4" fill="#3498ff"/>
+      <line x1="0" y1="15" x2="0" y2="26"/>
+    </g>
+    <text x="0" y="64" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" fill="#3498ff" letter-spacing="3">iCLOUD</text>
+  </g>
+  <text x="600" y="268" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#6f9fe0" letter-spacing="2">CIPHERTEXT ONLY — NO NAMES, NO KEYS</text>
+
+  <!-- Mac (left, Source) -->
+  <g transform="translate(120 360)">
+    <rect x="0" y="0" width="250" height="150" rx="12" fill="#0a1a3a" stroke="#3498ff" stroke-width="2.5"/>
+    <rect x="16" y="16" width="218" height="104" rx="4" fill="#050d22"/>
+    <rect x="98" y="150" width="54" height="12" fill="#3498ff" fill-opacity="0.45"/>
+    <rect x="62" y="162" width="126" height="9" rx="4" fill="#0a1a3a" stroke="#3498ff" stroke-width="1.5"/>
+    <g transform="translate(125 58)" stroke="#0a84ff" stroke-width="2.5" fill="none">
+      <rect x="-17" y="-3" width="34" height="26" rx="4" fill="#0a84ff" fill-opacity="0.2"/>
+      <path d="M-10 -3 V-12 a10 10 0 0 1 20 0 V-3"/>
+    </g>
+    <text x="125" y="104" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#cfe0ff">macOS</text>
+  </g>
+  <text x="245" y="548" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#e6f0ff">Source &#183; in charge of edits</text>
+
+  <!-- iPad (right, Mirror) -->
+  <g transform="translate(890 350)">
+    <rect x="0" y="0" width="180" height="170" rx="16" fill="#0a1a3a" stroke="#3498ff" stroke-width="2.5"/>
+    <rect x="13" y="13" width="154" height="144" rx="6" fill="#050d22"/>
+    <g transform="translate(90 64)" stroke="#0a84ff" stroke-width="2.5" fill="none">
+      <rect x="-17" y="-3" width="34" height="26" rx="4" fill="#0a84ff" fill-opacity="0.2"/>
+      <path d="M-10 -3 V-12 a10 10 0 0 1 20 0 V-3"/>
+    </g>
+    <text x="90" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#cfe0ff">iPad</text>
+  </g>
+  <text x="980" y="548" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#e6f0ff">Mirror &#183; read-only copy</text>
+
+  <!-- Flow lines (Source up to cloud, cloud down to Mirror) -->
+  <g stroke="#0a84ff" stroke-width="2.5" fill="none" opacity="0.8" stroke-dasharray="7 8">
+    <path d="M300 360 C 400 300, 470 250, 520 200" marker-end="url(#sync-arrow)"/>
+    <path d="M680 200 C 760 255, 820 300, 900 350" marker-end="url(#sync-arrow)"/>
+  </g>
+
+  <!-- Ciphertext riding the wires -->
+  <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="13" fill="#3498ff">
+    <text x="332" y="320" opacity="0.85">7e3a91f2bc4d83e5</text>
+    <text x="374" y="290" opacity="0.6">c1d8f3a9b07e6e22</text>
+    <text x="818" y="320" opacity="0.85" text-anchor="end">a073eb18d54f9e2c</text>
+    <text x="776" y="290" opacity="0.6" text-anchor="end">f14a5c3e08bd9206</text>
+  </g>
+</svg>

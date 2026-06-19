@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How iCloud Sync Works — Armored Vault Learning Center</title>
+    <meta name="description" content="Ciphertext-only sync across your devices, through your own iCloud, with one device in charge at a time — and why it can&#x27;t lose your data.">
+    <link rel="icon" type="image/png" href="../assets/app-icon.png">
+    <link rel="apple-touch-icon" href="../assets/app-icon.png">
+    <link rel="stylesheet" href="../style.css?v=20260426e">
+</head>
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html#top" class="nav-brand">
+            <img class="nav-icon" src="../assets/app-icon.png" alt="">
+            <span>Armored Vault</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links">
+            <a href="../index.html#features">Features</a>
+            <a href="../index.html#security">Security</a>
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../index.html#download" class="nav-cta">Download</a>
+        </nav>
+    </div>
+</header>
+
+<section class="support-hero article-hero">
+    <div class="support-hero-inner">
+        <a href="../learning-center.html" class="article-back">&larr; Learning Center</a>
+        <span class="eyebrow">LEARNING CENTER &middot; ARTICLE 06</span>
+        <h1>How iCloud Sync Works</h1>
+        <p class="article-meta">By Robert Lewis &middot; June 18, 2026</p>
+    </div>
+</section>
+
+<div class="article-hero-image">
+    <img src="images/06-sync.svg" alt="An encrypted vault syncing between a Mac and an iPad through an iCloud lock, carrying only ciphertext" loading="lazy">
+</div>
+
+<article class="article-section">
+    <div class="article-inner">
+        <div class="article-body">
+<p>For most of its life, Armored Vault was a single-device app on purpose. One vault, one device, nothing leaving it. That&#x27;s the safest design there is — but it&#x27;s also inconvenient the moment you own more than one Apple device and want your vault on both.</p>
+<p>iCloud Sync is how Armored Vault crosses that gap <em>without</em> giving up the thing that makes it a vault. The short version: your devices can share one vault through your own iCloud, but iCloud — and I — never see your files, your file names, or your key. Here&#x27;s exactly how that works, and the deliberate, slightly old-fashioned design choices that keep it safe.</p>
+<h2>The one rule everything else follows: iCloud only holds ciphertext</h2>
+<p>Before anything leaves your device, it&#x27;s already encrypted. The file blobs Armored Vault uploads are the very same AES-256-GCM ciphertext that lives in your vault — encrypted on-device, under your key, before iCloud ever sees them. The index that records which blob is which file — names, sizes, types — is itself encrypted under your vault key and uploaded as one more opaque blob.</p>
+<p>So what actually sits in iCloud is a pile of encrypted blobs and an encrypted index. Apple can&#x27;t read it. I can&#x27;t read it. There is no point at which a readable copy of your files exists anywhere but on a device you&#x27;ve personally unlocked.</p>
+<p>And it is <em>your</em> iCloud — your private iCloud database, tied to your Apple Account. There is no Armored Vault server in the middle. I don&#x27;t run infrastructure that touches your data, because there is no infrastructure (see <strong>Why I Don&#x27;t Collect Your Data</strong>). Sync is your devices talking to your own iCloud, with me nowhere in the loop.</p>
+<h2>Why a vault can&#x27;t sync like Notes or Photos</h2>
+<p>Apple&#x27;s own apps sync by merging: two devices both make changes, and the system stitches them together. That&#x27;s fine for notes and photos, where a merge conflict means a duplicated line, not a catastrophe.</p>
+<p>For an encrypted vault, naive two-way merging is dangerous. If two devices each believe they hold the truth and quietly disagree, you can end up with conflicts you can&#x27;t see — and the failure mode isn&#x27;t a harmless duplicate, it&#x27;s <em>silently losing a change you thought you&#x27;d made.</em> For files you&#x27;re trusting a vault to keep, that is unacceptable.</p>
+<p>So Armored Vault doesn&#x27;t merge. It uses a deliberately conservative model: <strong>one device is in charge at a time.</strong></p>
+<h2>Source and Mirror</h2>
+<p>At any moment, exactly one of your devices is the <strong>Source</strong> — the one in charge of edits. Every other device is a <strong>Mirror</strong>: a read-only copy that pulls the Source&#x27;s vault down from iCloud and shows it to you.</p>
+<p>A Mirror is read-only on purpose. You can browse everything, open anything, play your media — but you can&#x27;t edit it out from under the Source. That is the whole trick: because only one device can ever write, your devices can&#x27;t drift out of step or fight over which version is real. The right phrase for what a Mirror does is <em>pull from</em>, not <em>sync to</em> — it pulls down the Source&#x27;s truth; it never pushes a competing version up.</p>
+<h2>Taking over: changing which device leads</h2>
+<p>When you do want to edit on a Mirror, you <strong>take over.</strong> That device becomes the Source, and your others quietly become Mirrors of it from then on. Nothing is deleted and nothing is lost — the only thing that changes is which device leads. To hand the lead back, you take over on the other device.</p>
+<p>There is one safety rule here worth understanding, because it protects you from a mistake you&#x27;d never see coming: <strong>taking over requires an internet connection.</strong></p>
+<p>A take-over has to be coordinated through iCloud, so the device that <em>was</em> the Source learns it has been handed off. If a device can&#x27;t reach iCloud, Armored Vault won&#x27;t let it take over — it tells you to connect first. That feels like a small inconvenience, but it is preventing a real one: if two devices both believed they were in charge (because they couldn&#x27;t reach iCloud to sort it out), an edit you made on one would silently vanish the next time they reconnected. Rather than risk that, a Mirror that&#x27;s offline simply stays read-only and asks you to get online.</p>
+<p>The flip side is the good news for travel: **the device that already <em>is</em> the Source can edit offline all it wants.** Its changes queue up and upload the moment it is back on a connection. So if you&#x27;re boarding a flight, make the device you&#x27;re bringing the Source <em>before</em> you lose signal, and you can work the whole way — it syncs when you land.</p>
+<h2>How a second device can read the vault at all</h2>
+<p>For another device to make sense of the ciphertext it pulls, it needs your vault&#x27;s key. Armored Vault never copies that key into iCloud in usable form. Instead, the key is stored <strong>wrapped</strong> — encrypted under a key derived from your passphrase — and a joining device only unwraps it after <em>you</em> enter that same passphrase on it.</p>
+<p>So even the key material that passes through iCloud is itself encrypted, and worthless without the passphrase only you know. iCloud sees a wrapped blob; your device turns it back into a usable key locally, in memory, after you authenticate. The unwrapped key never leaves a device and never lands in the cloud.</p>
+<h2>Your decoy stays out of it</h2>
+<p>If you use Armored Vault&#x27;s decoy vault, it is deliberately excluded from sync. Your decoy never touches iCloud — so nothing about syncing can hint that a second, real vault exists. Sync only ever concerns your real vault, and only while you are unlocked into it.</p>
+<h2>What iCloud can and can&#x27;t see — honestly</h2>
+<p>I try to be straight about limits everywhere else, so here too. What iCloud <em>can</em> observe is metadata: that some number of encrypted blobs exist, roughly how large they are, and when they were uploaded or changed. That is the unavoidable cost of using cloud storage at all.</p>
+<p>What iCloud <em>cannot</em> see is the part that matters: your file names, your file contents, what any file actually is, your passphrase, or your usable key. And what <em>I</em> can see is nothing — there is no server I run, no dashboard, no copy of anything. The blobs are strictly between your devices and your iCloud.</p>
+<h2>It&#x27;s optional, and reversible</h2>
+<p>Sync is off until you turn it on. If you never set it up, Armored Vault is exactly the single-device vault it has always been, and not one byte goes to iCloud. If you turn it on and later change your mind, you can disable it and clear the cloud copy. Nothing about the feature is forced, sticky, or on by default.</p>
+<h2>The bottom line</h2>
+<p>iCloud Sync lets one vault live on all your devices, through your own iCloud, while keeping every promise the single-device version made. Only ciphertext ever leaves your device. Only one device edits at a time, so nothing is lost to a merge. Your key passes through the cloud only in wrapped form, useless without your passphrase. Apple can&#x27;t read it, and I can&#x27;t either.</p>
+<p>It&#x27;s sync built like a vault — cautious on purpose.</p>
+<p>— Robert</p>
+        </div>
+        <div class="article-pager">
+<a class="pager prev" href="05-why-i-dont-collect-your-data.html"><span class="pager-label">&larr; Previous</span><span class="pager-title">Why I Don&#x27;t Collect Your Data</span></a>
+<span class="pager pager-empty"></span>
+</div>
+    </div>
+</article>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img class="nav-icon" src="../assets/app-icon.png" alt="">
+            <strong>Armored Vault</strong>
+            <p>Encrypted Vault for iPad</p>
+        </div>
+        <nav class="footer-links">
+            <a href="../learning-center.html">Learning Center</a>
+            <a href="../support.html">Support</a>
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../index.html#features">Features</a>
+        </nav>
+    </div>
+    <div class="footer-legal">
+        <p>&copy; 2026 Beast Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../assets/nav.js"></script>
+</body>
+</html>

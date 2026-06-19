@@ -9,8 +9,11 @@ import re
 import html
 from pathlib import Path
 
-SRC_DIR = Path("/Volumes/Mac Studio Swap/armoredvault.app/learning-source")
-OUT_DIR = Path("/Volumes/Mac Studio Swap/armoredvault.app/learning")
+# Resolve relative to this script so it works wherever the project lives (the old
+# absolute Swap-drive paths broke when the project moved off that volume).
+BASE_DIR = Path(__file__).resolve().parent
+SRC_DIR = BASE_DIR / "learning-source"
+OUT_DIR = BASE_DIR / "learning"
 
 ARTICLES = [
     ("01-how-encryption-works",
@@ -48,6 +51,13 @@ ARTICLES = [
      "05-no-data.svg",
      "A device with all outbound network requests blocked",
      "April 18, 2026"),
+    ("06-how-icloud-sync-works",
+     "How iCloud Sync Works",
+     "Ciphertext-only sync across your devices, through your own iCloud, with one device in charge at a time — and why it can't lose your data.",
+     "06",
+     "06-sync.svg",
+     "An encrypted vault syncing between a Mac and an iPad through an iCloud lock, carrying only ciphertext",
+     "June 18, 2026"),
 ]
 
 NUMBERED_RE = re.compile(r'^(\d+)\.\s+(.*)$')
