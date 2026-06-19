@@ -343,11 +343,14 @@ img { display: block; max-width: 100%; height: auto; }
     max-width: var(--max);
     margin: 0 auto;
     padding: 0 var(--pad);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 .feature {
+    flex: 1 1 280px;
+    max-width: 360px;
     background: var(--bg-2);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
