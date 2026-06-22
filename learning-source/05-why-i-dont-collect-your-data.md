@@ -24,13 +24,15 @@ This isn't a hypothetical. Vault and security apps get subpoenaed. They get pres
 
 Let me show you what Armored Vault does and doesn't do at the network level.
 
-**The app makes zero network calls during normal operation.** No "phone home." No update checks (the App Store handles updates). No analytics endpoints. No crash reporters. The app's `Info.plist` and entitlements do not enable arbitrary network access. There are no SDKs from Firebase, Mixpanel, Amplitude, Google Analytics, Segment, Sentry, or any other vendor. There is no advertising SDK. There is no "growth tooling."
+**With iCloud sync off, the app makes zero network calls.** No "phone home." No update checks (the App Store handles updates). No analytics endpoints. No crash reporters. There are no SDKs from Firebase, Mixpanel, Amplitude, Google Analytics, Segment, Sentry, or any other vendor. There is no advertising SDK. There is no "growth tooling."
+
+**The one exception is iCloud sync — and it's yours to switch on.** Sync is optional and off by default. When you enable it, the app talks to *your own private iCloud* (Apple's CloudKit) to move encrypted blobs and an encrypted index between your devices. Only ciphertext travels, it never touches a server I run, and Apple can't read it. That's the single network path the app itself opens, it exists only while you've turned it on, and it still sends nothing about you to me.
 
 **Crash reporting happens through Xcode Organizer.** Apple aggregates anonymized crash reports from devices that have opted into sharing diagnostics with developers. Those reports go through Apple's anonymization pipeline before I see anything, and only users who explicitly opted in (via Settings → Privacy → Analytics on iPad, or System Settings → Privacy & Security → Analytics & Improvements on Mac) participate. I don't run any other reporting layer.
 
-**The app does not access the network for any purpose during vault operations.** It doesn't fetch icons. It doesn't validate licenses. It doesn't check for updates. The crypto operations are all local, the file storage is all local, the metadata is all local. The few network paths that exist are tied to actions you explicitly take — for example, using the share menu to send an exported file to a cloud-storage app. That app's network call happens; Armored Vault itself isn't connecting to anything.
+**Beyond the sync you enable, the app doesn't reach out on its own.** It doesn't fetch icons. It doesn't validate licenses. It doesn't check for updates. The crypto operations are all local, the file storage is all local, the metadata is all local. The network paths that exist are tied to actions you explicitly take — turning on iCloud sync, or using the share menu to hand an exported file to a cloud-storage app (that app makes the call, not Armored Vault). Nothing connects in the background.
 
-**You can verify this yourself.** If you don't trust me, install a network monitoring tool (Little Snitch or LuLu on Mac; Charles Proxy or a comparable network monitor on a computer routing your iPad's traffic). Open Armored Vault. Use it normally for an hour. Watch what calls are made. The answer should be zero — except where you explicitly invoked a feature that hands files off to another app.
+**You can verify this yourself.** If you don't trust me, install a network monitoring tool (Little Snitch or LuLu on Mac; Charles Proxy or a comparable network monitor on a computer routing your iPad's traffic). Open Armored Vault. Use it normally for an hour. Watch what calls are made. With sync off, the answer should be zero. With sync on, you'll see encrypted traffic to Apple's iCloud — and nothing else, and nothing to any server of mine.
 
 ## The privacy policy in plain English
 
@@ -71,7 +73,7 @@ The other reality is that Armored Vault is intentionally a small, focused app. F
 
 I'll be transparent about anything that ever changes here:
 
-- **If a future feature requires the network**, it will be a feature you explicitly invoke. It will not become a background process. It will not "phone home." If a feature ever required a server I run, I'd document it explicitly and you could choose not to use it.
+- **When a feature requires the network**, it's a feature you explicitly invoke — never a background process, never a "phone home." iCloud sync is the first and only example: optional, off by default, ciphertext-only, through your own private iCloud. If a feature ever required a server *I* run, I'd document it explicitly and you could choose not to use it.
 - **If I ever consider adding telemetry**, I won't do it quietly. I'll write a Learning Center article about exactly what would be collected and why, and you'll get to decide before any data leaves your device. The default would be off.
 - **If anyone ever offers to acquire Armored Vault**, the no-data-collection commitment is something I'd refuse to compromise on. If that's a deal-breaker, I won't sell.
 

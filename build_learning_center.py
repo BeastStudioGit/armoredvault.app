@@ -276,7 +276,7 @@ PAGE = """<!DOCTYPE html>
         <div class="footer-brand">
             <img class="nav-icon" src="../assets/app-icon.png" alt="">
             <strong>Armored Vault</strong>
-            <p>Encrypted Vault for iPad</p>
+            <p>Encrypted Vault for iPad and Mac</p>
         </div>
         <nav class="footer-links">
             <a href="../learning-center.html">Learning Center</a>
