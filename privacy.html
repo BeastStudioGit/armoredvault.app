@@ -43,10 +43,10 @@
 <!-- ═══════════════════ PRIVACY BODY ═══════════════════ -->
 <section class="legal">
     <div class="legal-inner">
-        <p class="effective">Effective date: May 22, 2026</p>
+        <p class="effective">Effective date: June 22, 2026</p>
 
         <h2>Overview</h2>
-        <p>Armored Vault is designed with privacy as its core principle. The app operates entirely offline and does not collect, transmit, or share any user data whatsoever.</p>
+        <p>Armored Vault is designed with privacy as its core principle. By default the app operates entirely offline and does not collect or share any user data. The sole exception is <strong>optional iCloud sync</strong>, which you enable yourself — and even then, only ciphertext moves through your own private iCloud, where Apple cannot read it. Beast Studio never collects or receives your data in any case.</p>
 
         <h2>Data Collection</h2>
         <p>Armored Vault collects <strong>no data</strong>. Specifically:</p>
@@ -60,10 +60,13 @@
         </ul>
 
         <h2>Network Activity</h2>
-        <p>Armored Vault makes <strong>zero network connections</strong>. The app does not communicate with any server, API, or external service. All encryption, decryption, and file storage happens entirely on your device.</p>
+        <p>With iCloud sync off, Armored Vault makes <strong>zero network connections</strong> and communicates with no server, API, or external service — all encryption, decryption, and file storage happens entirely on your device. The one network feature is <strong>optional iCloud sync</strong>, off until you enable it. When it is on, your device exchanges <strong>only ciphertext</strong> — encrypted file blobs and an encrypted index — with your own private iCloud. Apple cannot read your files, names, or keys, and there is still no server run by Beast Studio in between.</p>
+
+        <h2>iCloud Sync</h2>
+        <p>Armored Vault offers an <strong>optional</strong> iCloud sync feature that keeps one vault current across your own Mac and iPad. It is <strong>off by default</strong> and runs only after you explicitly turn it on. Sync uses <strong>your own private iCloud</strong> account (Apple's iCloud / CloudKit) — there is no account system and no server operated by Beast Studio. Only <strong>ciphertext</strong> ever leaves your device: encrypted file blobs and an encrypted index. Your file names, contents, and encryption keys are never exposed; even the key material that passes through iCloud is itself encrypted and useless without your passphrase. Your decoy vault is deliberately excluded from sync and never touches iCloud. Data synced this way is also subject to Apple's iCloud terms and privacy policy.</p>
 
         <h2>On-Device Data</h2>
-        <p>All files you import or create within the app are encrypted using AES-256-GCM and stored locally on your device. Your passphrase is used to derive an encryption key on your device; the passphrase itself is never stored, transmitted, or recorded in any form. No data leaves your device unless you explicitly choose to export it.</p>
+        <p>All files you import or create within the app are encrypted using AES-256-GCM and stored locally on your device. Your passphrase is used to derive an encryption key on your device; the passphrase itself is never stored, transmitted, or recorded in any form. No data leaves your device unless you explicitly choose to export it — or turn on optional iCloud sync, which moves only ciphertext to your own private iCloud.</p>
 
         <h2>Camera Access</h2>
         <p>The app requests camera access for two optional features: capturing photos and videos directly into the vault, and the break-in detection feature. All captured images remain on your device, encrypted within the app's secure storage. No images are ever uploaded or transmitted.</p>
@@ -72,7 +75,7 @@
         <p>If you enable biometric unlock (Face ID or Touch ID), authentication is handled entirely by Apple's LocalAuthentication framework on your device. The app also uses Apple's device-owner authentication (Face ID, Touch ID, device passcode, or Mac account password) to gate Vault Reset, the sanctioned clean-slate reset path for forgotten passphrases. No biometric data is accessed or stored by Armored Vault in either case — all evaluation happens within iOS or macOS.</p>
 
         <h2>Third-Party Services</h2>
-        <p>Armored Vault uses no third-party SDKs, analytics services, ad networks, or cloud services of any kind.</p>
+        <p>Armored Vault uses no third-party SDKs, analytics services, or ad networks. The only external service it can use is your own private iCloud, and only if you enable optional sync — there is no other cloud service and no server operated by Beast Studio.</p>
 
         <h2>What This Policy Covers — and What It Doesn't</h2>
         <p>This policy describes Armored Vault's own behavior: what the app does and does not do with your data. It does not describe, and cannot speak to, the behavior of:</p>
