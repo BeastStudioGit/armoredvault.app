@@ -1,0 +1,10 @@
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+CNAME
+*.py
+__pycache__
+learning-source
+eula.md
+.DS_Store

@@ -993,6 +993,11 @@ img { display: block; max-width: 100%; height: auto; }
     font-size: 16px;
     margin-bottom: 16px;
 }
+.legal hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+}
 .legal ul {
     list-style: none;
     padding: 0;
